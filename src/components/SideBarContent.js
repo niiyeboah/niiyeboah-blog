@@ -11,12 +11,81 @@ import { rhythm, scale } from '../utils/typography';
 
 class SideBarContent extends React.Component {
     render() {
+        const { toggleVisibility } = this.props;
+        const iconStyles = { color: '#396' };
+        const listItemStyle = { marginBottom: rhythm(0.5) };
+        const linkStyle = {
+            textShadow: 'none',
+            color: '#FFF'
+        };
+        const navLinkData = [
+            {
+                path: '/',
+                text: 'Home',
+                icon: 'home',
+                onClick: toggleVisibility
+            },
+            {
+                path: '/',
+                text: 'About',
+                icon: 'info circle'
+            }
+        ];
+        const navListItems = navLinkData.map((data, i) => (
+            <List.Item style={listItemStyle} key={i}>
+                <List.Icon name={data.icon} style={iconStyles} />
+                <List.Content>
+                    <Link
+                        to={data.path}
+                        style={linkStyle}
+                        onClick={data.onClick}
+                    >
+                        {data.text}
+                    </Link>
+                </List.Content>
+            </List.Item>
+        ));
+        const contactLinkData = [
+            {
+                url: 'https://www.linkedin.com/in/niiyeboah/',
+                text: 'LinkedIn',
+                icon: 'linkedin'
+            },
+            {
+                url: 'https://github.com/niiyeboah/',
+                text: 'GitHub',
+                icon: 'github'
+            },
+            {
+                url: 'https://stackoverflow.com/users/story/3542713',
+                text: 'Stack Overflow',
+                icon: 'stack overflow'
+            },
+            {
+                url: 'mailto:contact@niiyeboah.com',
+                text: 'Email',
+                icon: 'mail',
+                styles: {
+                    marginLeft: '-2px'
+                }
+            }
+        ];
+        const contactListItems = contactLinkData.map((data, i) => (
+            <List.Item style={{ ...listItemStyle, ...data.styles }} key={i}>
+                <List.Icon name={data.icon} style={iconStyles} />
+                <List.Content>
+                    <a href={data.url} style={linkStyle}>
+                        {data.text}
+                    </a>
+                </List.Content>
+            </List.Item>
+        ));
         return (
             <Grid
                 style={{
                     padding: `${rhythm(1.5)} 20px`,
                     color: '#FFF',
-                    ...scale(-0.4)
+                    ...scale(-0.2)
                 }}
             >
                 <Grid.Row>
@@ -34,7 +103,12 @@ class SideBarContent extends React.Component {
                         <div
                             style={{
                                 textAlign: 'center',
-                                color: 'white'
+                                color: '#FFF',
+                                padding: `${rhythm(0.25)} 0`,
+                                border: 'solid #042',
+                                borderWidth: '1px 0',
+                                marginBottom: '5px',
+                                ...scale(-0.15)
                             }}
                         >
                             Software Developer
@@ -58,103 +132,14 @@ class SideBarContent extends React.Component {
                     <Grid.Column width={8}>
                         <List
                             style={{
-                                paddingLeft: rhythm(2.5)
+                                paddingLeft: rhythm(1.5)
                             }}
                         >
-                            <List.Item>
-                                <List.Icon name="home" />
-                                <List.Content>
-                                    <Link
-                                        to={'/'}
-                                        style={{
-                                            textShadow: 'none',
-                                            color: '#FFF'
-                                        }}
-                                        onClick={this.toggleVisibility}
-                                    >
-                                        Home
-                                    </Link>
-                                </List.Content>
-                            </List.Item>
-                            <List.Item>
-                                <List.Icon name="info circle" />
-                                <List.Content>
-                                    <a
-                                        href="https://github.com/niiyeboah/"
-                                        style={{
-                                            textShadow: 'none',
-                                            color: '#FFF'
-                                        }}
-                                    >
-                                        About
-                                    </a>
-                                </List.Content>
-                            </List.Item>
+                            {navListItems}
                         </List>
                     </Grid.Column>
                     <Grid.Column width={8}>
-                        <List>
-                            <List.Item>
-                                <List.Icon name="linkedin" />
-                                <List.Content>
-                                    <a
-                                        href="https://www.linkedin.com/in/niiyeboah/"
-                                        style={{
-                                            textShadow: 'none',
-                                            color: '#FFF'
-                                        }}
-                                    >
-                                        LinkedIn
-                                    </a>
-                                </List.Content>
-                            </List.Item>
-                            <List.Item>
-                                <List.Icon name="github" />
-                                <List.Content>
-                                    <a
-                                        href="https://github.com/niiyeboah/"
-                                        style={{
-                                            textShadow: 'none',
-                                            color: '#FFF'
-                                        }}
-                                    >
-                                        GitHub
-                                    </a>
-                                </List.Content>
-                            </List.Item>
-                            <List.Item>
-                                <List.Icon name="stack overflow" />
-                                <List.Content>
-                                    <a
-                                        href="https://www.linkedin.com/in/niiyeboah/"
-                                        style={{
-                                            textShadow: 'none',
-                                            color: '#FFF'
-                                        }}
-                                    >
-                                        Stack Overflow
-                                    </a>
-                                </List.Content>
-                            </List.Item>
-                            <List.Item
-                                style={{
-                                    marginLeft: '-2px'
-                                }}
-                            >
-                                <List.Icon name="mail" />
-                                <List.Content>
-                                    <a
-                                        href="mailto:contact@niiyeboah.com"
-                                        style={{
-                                            textShadow: 'none',
-                                            color: '#FFF'
-                                        }}
-                                    >
-                                        Email
-                                    </a>
-                                </List.Content>
-                            </List.Item>
-                        </List>
+                        <List>{contactListItems}</List>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

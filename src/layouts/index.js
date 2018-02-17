@@ -7,6 +7,7 @@ import 'semantic-ui-css/components/dimmer.min.css';
 import { rhythm } from '../utils/typography';
 import Header from '../components/Header';
 import SideBarContent from '../components/SideBarContent';
+import SamaiBackground from '../components/SamaiBackground';
 
 let rootPath = `/`;
 if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
@@ -18,32 +19,49 @@ class Template extends React.Component {
         super(props);
         this.toggleVisibility = this.toggleVisibility.bind(this);
         this.setPusherHeight = this.setPusherHeight.bind(this);
+        this.setContentHeight = this.setContentHeight.bind(this);
+        this.setHeaderHeight = this.setHeaderHeight.bind(this);
+        this.getHeaderHeight = this.getHeaderHeight.bind(this);
+        this.getVisible = this.getVisible.bind(this);
         this.state = {};
     }
     toggleVisibility() {
-        const { menuVisible, pusherHeight, headerHeight } = this.state;
+        const {
+            menuVisible,
+            pusherHeight,
+            headerHeight,
+            contentHeight
+        } = this.state;
         this.setState({
             menuVisible: !menuVisible
         });
-        this.setPusherHeight(headerHeight, !menuVisible);
-        console.log('PH:', pusherHeight);
+        this.setPusherHeight(headerHeight, !menuVisible, contentHeight);
     }
     setHeaderHeight(h) {
         this.setState({ headerHeight: h });
     }
-    setPusherHeight(headerHeight, menuVisible) {
+    setContentHeight(h) {
+        this.setState({ contentHeight: h });
+    }
+    setPusherHeight(headerHeight, menuVisible, contentHeight) {
         if (typeof document !== 'undefined') {
+            const windowHeight = document.documentElement.clientHeight;
             let pusherHeight = 'auto';
-            let windowHeight = document.documentElement.clientHeight;
-            if (menuVisible) {
-                console.log('PH_args:', windowHeight, menuVisible);
+            if (menuVisible || contentHeight <= windowHeight) {
                 pusherHeight = windowHeight - headerHeight + 'px';
             }
             this.setState({
                 pusherHeight: pusherHeight
             });
-            console.log('PH_result:', pusherHeight);
+            console.log({
+                pusherHeight,
+                menuVisible,
+                'contentHeight <= windowHeight': contentHeight <= windowHeight
+            });
         }
+    }
+    getHeaderHeight() {
+        return this.state.headerHeight;
     }
     getVisible() {
         return this.state.menuVisible;
@@ -53,10 +71,10 @@ class Template extends React.Component {
         else return 'very wide';
     }
     handleOnUpdate(e, { width }) {
-        this.setPusherHeight(this.state.headerHeight, this.state.menuVisible);
+        const { headerHeight, menuVisible, contentHeight } = this.state;
+        this.setPusherHeight(headerHeight, menuVisible, contentHeight);
         this.setState({
-            sideBarWidth: this.getSideBarWidth(width),
-            width: width
+            sideBarWidth: this.getSideBarWidth(width)
         });
     }
     componentDidMount() {
@@ -67,33 +85,16 @@ class Template extends React.Component {
                 document.documentElement.clientWidth
             )
         };
+        this.setState({ contentHeight: this.contentArea.clientHeight });
     }
     render() {
         const { children } = this.props;
-        const { menuVisible, sideBarWidth, pusherHeight } = this.state;
-        console.log(this.state);
-        let sideBarPusher = (
-            <Sidebar.Pusher>
-                <Dimmer.Dimmable as={'div'} blurring dimmed={menuVisible}>
-                    <Dimmer
-                        active={menuVisible}
-                        onClick={this.toggleVisibility}
-                        style={{
-                            cursor: 'pointer'
-                        }}
-                    />
-                    <div
-                        style={{
-                            margin: '0 auto',
-                            maxWidth: rhythm(24),
-                            padding: `${rhythm(1)} ${rhythm(3 / 4)}`
-                        }}
-                    >
-                        {children()}
-                    </div>
-                </Dimmer.Dimmable>
-            </Sidebar.Pusher>
-        );
+        const {
+            menuVisible,
+            sideBarWidth,
+            pusherHeight,
+            headerHeight
+        } = this.state;
         return (
             <Responsive
                 as={'div'}
@@ -103,9 +104,10 @@ class Template extends React.Component {
                 }}
             >
                 <Header
+                    getVisible={this.getVisible}
+                    contentHeight={this.contentHeight}
                     setPusherHeight={this.setPusherHeight}
-                    setHeaderHeight={this.setHeaderHeight.bind(this)}
-                    getVisible={this.getVisible.bind(this)}
+                    setHeaderHeight={this.setHeaderHeight}
                     toggleVisibility={this.toggleVisibility}
                 />
                 <Sidebar.Pushable
@@ -120,41 +122,59 @@ class Template extends React.Component {
                         animation="push"
                         visible={menuVisible}
                         style={{
-                            borderRight: '10px solid #222',
+                            borderRight: '10px solid #111',
                             boxShadow: '10px 0 20px rgba(34, 36, 38, .15)',
-                            backgroundColor: '#333',
-                            overflow: 'hidden'
+                            overflow: 'hidden',
+                            background: '#333'
                         }}
                     >
-                        <SideBarContent />
+                        <SamaiBackground>
+                            <SideBarContent
+                                toggleVisibility={this.toggleVisibility}
+                            />
+                        </SamaiBackground>
                     </Sidebar>
                     <Sidebar.Pusher
                         style={{
                             height: pusherHeight
                         }}
                     >
-                        <Dimmer.Dimmable
-                            as={'div'}
-                            blurring
-                            dimmed={menuVisible}
+                        <div
+                            ref={div => {
+                                this.contentArea = div;
+                            }}
                         >
-                            <Dimmer
-                                active={menuVisible}
-                                onClick={this.toggleVisibility}
+                            <Dimmer.Dimmable
+                                as={'div'}
+                                blurring
+                                dimmed={menuVisible}
                                 style={{
-                                    cursor: 'pointer'
-                                }}
-                            />
-                            <div
-                                style={{
-                                    margin: '0 auto',
-                                    maxWidth: rhythm(24),
-                                    padding: `${rhythm(1)} ${rhythm(3 / 4)}`
+                                    height: pusherHeight
                                 }}
                             >
-                                {children()}
-                            </div>
-                        </Dimmer.Dimmable>
+                                <Dimmer
+                                    active={menuVisible}
+                                    onClick={this.toggleVisibility}
+                                    style={{
+                                        cursor: 'pointer'
+                                    }}
+                                />
+                                <div
+                                    style={{
+                                        margin: '0 auto',
+                                        maxWidth: rhythm(24),
+                                        padding: `${rhythm(1)} ${rhythm(3 / 4)}`
+                                    }}
+                                >
+                                    {children({
+                                        ...this.props,
+                                        layout: false,
+                                        setPusherHeight: this.setPusherHeight,
+                                        setContentHeight: this.setContentHeight
+                                    })}
+                                </div>
+                            </Dimmer.Dimmable>
+                        </div>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </Responsive>

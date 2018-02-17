@@ -36,12 +36,9 @@ class Header extends React.Component {
         super(props);
         this.state = {};
     }
-    toggleMethodWrapper(getVisible, toggleVisibility) {
+    toggleMethodWrapper(toggleVisibility) {
         return () => {
             toggleVisibility();
-            this.setState({
-                menuVisible: !getVisible()
-            });
         };
     }
     responsiveUpdateWrapper(setHeaderHeight) {
@@ -50,22 +47,21 @@ class Header extends React.Component {
         };
     }
     componentDidMount() {
-        let headerHeight = ReactDOM.findDOMNode(this).clientHeight;
-        let menuVisible = window.location.pathname === rootPath;
-        this.props.setHeaderHeight(headerHeight);
-        this.props.setPusherHeight(headerHeight, menuVisible);
-        this.state = { menuVisible };
-        console.log('H_mounted', menuVisible, headerHeight);
+        const { setHeaderHeight, setPusherHeight, contentHeight } = this.props;
+        const headerHeight = ReactDOM.findDOMNode(this).clientHeight;
+        const menuVisible = window.location.pathname === rootPath;
+        setHeaderHeight(headerHeight);
+        setPusherHeight(headerHeight, menuVisible, contentHeight);
     }
     render() {
         const { toggleVisibility, getVisible, setHeaderHeight } = this.props;
-        const { menuVisible } = this.state;
         return (
             <Responsive
                 as={'div'}
                 onUpdate={this.responsiveUpdateWrapper(setHeaderHeight)}
             >
                 <Headroom
+                    id="header"
                     style={{
                         backgroundColor: '#222',
                         boxShadow: '1px 1px 1px rgba(0,0,0,0.25)',
@@ -79,13 +75,10 @@ class Header extends React.Component {
                             position: 'absolute',
                             cursor: 'pointer'
                         }}
-                        onClick={this.toggleMethodWrapper(
-                            getVisible,
-                            toggleVisibility
-                        )}
+                        onClick={this.toggleMethodWrapper(toggleVisibility)}
                     >
                         <HamburgerMenu
-                            isOpen={menuVisible}
+                            isOpen={getVisible()}
                             width={20}
                             height={20}
                             strokeWidth={3}
