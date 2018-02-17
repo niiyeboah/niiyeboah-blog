@@ -1,6 +1,5 @@
 import React from 'react';
 
-import profilePic from './profile-pic.jpg';
 import { rhythm } from '../utils/typography';
 
 class Bio extends React.Component {
@@ -13,7 +12,6 @@ class Bio extends React.Component {
                 }}
             >
                 <img
-                    src={profilePic}
                     alt={`Kyle Mathews`}
                     style={{
                         marginRight: rhythm(1 / 2),
