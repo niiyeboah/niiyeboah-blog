@@ -21,6 +21,7 @@ class Template extends React.Component {
         this.setPusherHeight = this.setPusherHeight.bind(this);
         this.setContentHeight = this.setContentHeight.bind(this);
         this.setHeaderHeight = this.setHeaderHeight.bind(this);
+        this.setTopParallax = this.setTopParallax.bind(this);
         this.getHeaderHeight = this.getHeaderHeight.bind(this);
         this.getVisible = this.getVisible.bind(this);
         this.state = {};
@@ -42,6 +43,9 @@ class Template extends React.Component {
     }
     setContentHeight(h) {
         this.setState({ contentHeight: h });
+    }
+    setTopParallax(bg) {
+        this.setState({ topParallax: bg });
     }
     setPusherHeight(headerHeight, menuVisible, contentHeight) {
         if (typeof document !== 'undefined') {
@@ -93,7 +97,8 @@ class Template extends React.Component {
             menuVisible,
             sideBarWidth,
             pusherHeight,
-            headerHeight
+            headerHeight,
+            topParallax
         } = this.state;
         return (
             <Responsive
@@ -139,9 +144,9 @@ class Template extends React.Component {
                             height: pusherHeight
                         }}
                     >
-                        <div
-                            ref={div => {
-                                this.contentArea = div;
+                        <main
+                            ref={main => {
+                                this.contentArea = main;
                             }}
                         >
                             <Dimmer.Dimmable
@@ -159,7 +164,7 @@ class Template extends React.Component {
                                         cursor: 'pointer'
                                     }}
                                 />
-                                <div
+                                <section
                                     style={{
                                         margin: '0 auto',
                                         maxWidth: rhythm(24),
@@ -170,11 +175,12 @@ class Template extends React.Component {
                                         ...this.props,
                                         layout: false,
                                         setPusherHeight: this.setPusherHeight,
-                                        setContentHeight: this.setContentHeight
+                                        setContentHeight: this.setContentHeight,
+                                        setTopParallax: this.setTopParallax
                                     })}
-                                </div>
+                                </section>
                             </Dimmer.Dimmable>
-                        </div>
+                        </main>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
             </Responsive>

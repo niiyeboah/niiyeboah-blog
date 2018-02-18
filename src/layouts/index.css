@@ -1,0 +1,9 @@
+.react-parallax-background-children {
+    width: 100%;
+}
+.react-parallax-bgimage {
+    transform-style: preserve-3d;
+    position: absolute;
+    left: 50%;
+    max-width: none;
+}
