@@ -5,8 +5,8 @@ import 'semantic-ui-css/components/icon.min.css';
 import 'semantic-ui-css/components/grid.min.css';
 import 'semantic-ui-css/components/image.min.css';
 import 'semantic-ui-css/components/list.min.css';
+import Avatar from './bojo.square.jpg';
 
-import Avatar from './bojo.large.jpg';
 import { rhythm, scale } from '../utils/typography';
 
 class SideBarContent extends React.Component {

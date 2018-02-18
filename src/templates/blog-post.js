@@ -9,9 +9,15 @@ import { rhythm, scale } from '../utils/typography';
 
 class BlogPostTemplate extends React.Component {
     componentDidMount() {
-        const { setPusherHeight, setContentHeight, location } = this.props;
+        const {
+            setPusherHeight,
+            setContentHeight,
+            setTopParallax,
+            location
+        } = this.props;
         const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
         setContentHeight(contentHeight);
+        setTopParallax(null);
         setPusherHeight(
             document.querySelector('#header').clientHeight,
             location.pathname === '/',

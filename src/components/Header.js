@@ -64,7 +64,7 @@ class Header extends React.Component {
                     id="header"
                     style={{
                         backgroundColor: '#222',
-                        boxShadow: '1px 1px 1px rgba(0,0,0,0.25)',
+                        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 2.5px 7.5px;',
                         transition: 'width 1s ease-in-out'
                     }}
                 >

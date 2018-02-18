@@ -5,13 +5,20 @@ import get from 'lodash/get';
 import Helmet from 'react-helmet';
 
 import Bio from '../components/Bio';
+import Bojo from './bojo.large.jpg';
 import { rhythm } from '../utils/typography';
 
 class BlogIndex extends React.Component {
     componentDidMount() {
-        const { setPusherHeight, setContentHeight, location } = this.props;
+        const {
+            setPusherHeight,
+            setContentHeight,
+            setTopParallax,
+            location
+        } = this.props;
         const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
         setContentHeight(contentHeight);
+        setTopParallax(Bojo);
         setPusherHeight(
             document.querySelector('#header').clientHeight,
             location.pathname === '/',
