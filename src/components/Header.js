@@ -16,8 +16,8 @@ if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
 class NiiYeboahDotCom extends React.Component {
     render() {
         const boldGreen = {
-            color: '#396',
-            fontWeight: 'bold'
+            color: '#396'
+            //fontWeight: 'bold'
         };
         return (
             <span style={{ fontFamily: 'fira-sans, monospace' }}>
@@ -51,7 +51,7 @@ class Header extends React.Component {
         const headerHeight = ReactDOM.findDOMNode(this).clientHeight;
         const menuVisible = window.location.pathname === rootPath;
         setHeaderHeight(headerHeight);
-        setPusherHeight(headerHeight, menuVisible, contentHeight);
+        //setPusherHeight(headerHeight, menuVisible, contentHeight);
     }
     render() {
         const { toggleVisibility, getVisible, setHeaderHeight } = this.props;
@@ -64,7 +64,7 @@ class Header extends React.Component {
                     id="header"
                     style={{
                         backgroundColor: '#222',
-                        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 2.5px 7.5px;',
+                        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 2.5px 7.5px',
                         transition: 'width 1s ease-in-out'
                     }}
                 >
@@ -88,11 +88,12 @@ class Header extends React.Component {
                         />
                     </div>
                     <div
+                        className="header-container"
                         style={{
                             margin: '0 auto',
                             maxWidth: rhythm(24),
-                            padding: `${rhythm(0.5)} ${rhythm(3 / 4)}`,
-                            textAlign: 'center'
+                            padding: `${rhythm(0.5)} ${rhythm(3 / 4)}`
+                            //textAlign: 'center'
                         }}
                     >
                         <h3

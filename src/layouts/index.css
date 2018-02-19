@@ -7,3 +7,21 @@
     left: 50%;
     max-width: none;
 }
+.header-container {
+    text-align: center;
+}
+.custom-image {
+    max-width: none;
+}
+.custom-image.loading.success {
+    filter: blur(5px);
+    transition: -webkit-filter 0s;
+    -webkit-filter: blur(5px);
+    -webkit-transition: -webkit-filter 0s;
+}
+.custom-image.loading.complete {
+    filter: blur(0);
+    transition: filter 1s;
+    -webkit-filter: blur(0);
+    -webkit-transition: -webkit-filter 1s;
+}

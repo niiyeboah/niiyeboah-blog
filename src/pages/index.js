@@ -6,10 +6,13 @@ import Helmet from 'react-helmet';
 
 import Bio from '../components/Bio';
 import Bojo from './bojo.large.jpg';
+import BojoPH from './bojo.large.ph.jpg';
 import { rhythm } from '../utils/typography';
+import Quotes from '../utils/quotes/developerGoals';
 
 class BlogIndex extends React.Component {
     componentDidMount() {
+        const quote = Quotes[Math.floor(Math.random() * Quotes.length)];
         const {
             setPusherHeight,
             setContentHeight,
@@ -18,12 +21,12 @@ class BlogIndex extends React.Component {
         } = this.props;
         const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
         setContentHeight(contentHeight);
-        setTopParallax(Bojo);
-        setPusherHeight(
-            document.querySelector('#header').clientHeight,
-            location.pathname === '/',
-            contentHeight
-        );
+        setTopParallax({
+            image: Bojo,
+            ph: BojoPH,
+            text: quote,
+            quotee: 'Developer Goals'
+        });
     }
     render() {
         const siteTitle = get(this, 'props.data.site.siteMetadata.title');

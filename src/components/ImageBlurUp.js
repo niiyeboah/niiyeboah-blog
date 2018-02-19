@@ -1,6 +1,4 @@
 import React from 'react';
-import { Image } from 'semantic-ui-react';
-import 'semantic-ui-css/components/image.min.css';
 
 import { rhythm } from '../utils/typography';
 import Avatar from './rehab.square.jpg';
@@ -28,7 +26,7 @@ class Bio extends React.Component {
                 />
                 <p>
                     Written by <strong>Nii Yeboah</strong> who currently lives
-                    in Accra working as a freelance web developer.{' '}
+                    in Accra working as a freelance web developer.{' => '}
                     <a href="mailto:contact@niiyeboah.com">
                         contact@niiyeboah.com
                     </a>
@@ -38,4 +36,4 @@ class Bio extends React.Component {
     }
 }
 
-export default Bio;
+export default ImageBlurUp;

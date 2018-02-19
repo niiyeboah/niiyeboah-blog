@@ -8,7 +8,11 @@ import { rhythm } from '../utils/typography';
 import Header from '../components/Header';
 import SideBarContent from '../components/SideBarContent';
 import SamaiBackground from '../components/SamaiBackground';
+import ParallaxBanner from '../components/ParallaxBanner';
+import './index.css';
 
+const contentPadding = 42;
+const parallaxHeight = 420;
 let rootPath = `/`;
 if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
     rootPath = __PATH_PREFIX__ + `/`;
@@ -42,7 +46,7 @@ class Template extends React.Component {
         this.setState({ headerHeight: h });
     }
     setContentHeight(h) {
-        this.setState({ contentHeight: h });
+        this.setState({ contentHeight: this.calculateHeight(h) });
     }
     setTopParallax(bg) {
         this.setState({ topParallax: bg });
@@ -56,11 +60,6 @@ class Template extends React.Component {
             }
             this.setState({
                 pusherHeight: pusherHeight
-            });
-            console.log({
-                pusherHeight,
-                menuVisible,
-                'contentHeight <= windowHeight': contentHeight <= windowHeight
             });
         }
     }
@@ -81,15 +80,26 @@ class Template extends React.Component {
             sideBarWidth: this.getSideBarWidth(width)
         });
     }
+    calculateHeight(h) {
+        return h + 2 * contentPadding + parallaxHeight;
+    }
     componentDidMount() {
-        let menuVisible = window.location.pathname === rootPath;
+        //const menuVisible = window.location.pathname === rootPath;
+        const menuVisible = false;
+        const contentHeight = this.contentArea.clientHeight;
+
         this.state = {
             menuVisible: menuVisible,
             sideBarWidth: this.getSideBarWidth(
                 document.documentElement.clientWidth
             )
         };
-        this.setState({ contentHeight: this.contentArea.clientHeight });
+        this.setContentHeight(contentHeight);
+        this.setPusherHeight(
+            document.querySelector('#header').clientHeight,
+            menuVisible,
+            this.calculateHeight(contentHeight)
+        );
     }
     render() {
         const { children } = this.props;
@@ -164,11 +174,17 @@ class Template extends React.Component {
                                         cursor: 'pointer'
                                     }}
                                 />
+                                <ParallaxBanner
+                                    data={topParallax}
+                                    height={parallaxHeight}
+                                />
                                 <section
                                     style={{
                                         margin: '0 auto',
                                         maxWidth: rhythm(24),
-                                        padding: `${rhythm(1)} ${rhythm(3 / 4)}`
+                                        padding:
+                                            `${contentPadding}px ` +
+                                            `${rhythm(3 / 4)}`
                                     }}
                                 >
                                     {children({
