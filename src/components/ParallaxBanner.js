@@ -1,5 +1,4 @@
 import React from 'react';
-import { Parallax, Background } from 'react-parallax';
 
 import { rhythm, scale } from '../utils/typography';
 
@@ -18,16 +17,18 @@ class ParallaxBanner extends React.Component {
                     throw new Error('failed to load image');
                 };
                 largeImage.onload = () => {
-                    this.setState({
-                        imageClass: 'loading success',
-                        image: largeImage.src,
-                        loaded: true
-                    });
                     window.setTimeout(() => {
                         this.setState({
-                            imageClass: 'loading complete'
+                            imageClass: 'loading success',
+                            image: largeImage.src,
+                            loaded: true
                         });
-                    }, 100);
+                        window.setTimeout(() => {
+                            this.setState({
+                                imageClass: 'loading complete'
+                            });
+                        }, 100);
+                    }, 2000);
                 };
             } catch (e) {
                 console.log(e);
@@ -35,60 +36,42 @@ class ParallaxBanner extends React.Component {
         }
     }
     render() {
-        let { imageClass, image } = this.state;
+        const { imageClass, image } = this.state;
         const { data, height = 420 } = this.props;
+        console.log(image, data);
         let parallaxBanner = null;
-        if (data) {
+        if (data && data.text) {
             parallaxBanner = (
-                <div>
-                    <Parallax
-                        bgImageAlt="Parallax Banner"
-                        strength={height}
-                        bgImage={image || data.ph}
-                        bgClassName={'custom-image ' + imageClass}
-                        style={{ height }}
+                <section
+                    className="banner-container"
+                    style={{
+                        height: `${height}px`
+                    }}
+                >
+                    <div
+                        className={'banner-image'}
+                        style={{
+                            backgroundImage: 'url(' + image || data.ph + "')"
+                        }}
+                    />
+                    <div
+                        className="banner"
+                        style={{
+                            maxWidth: rhythm(24),
+                            padding: `0 ${rhythm(3 / 4)}`
+                        }}
                     >
-                        <section
-                            style={{
-                                height: `${height}px`,
-                                background:
-                                    'radial-gradient(farthest-corner at 0 0, transparent 0%, #111 100%)'
-                            }}
+                        <blockquote className="quote" style={{ ...scale(0.3) }}>
+                            {data.text}
+                        </blockquote>
+                        <p
+                            className="quotee"
+                            style={{ marginRight: rhythm(1) }}
                         >
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    transform: 'translate(-50%,-50%)',
-                                    width: '100%',
-                                    maxWidth: rhythm(24),
-                                    padding: `0 ${rhythm(3 / 4)}`
-                                }}
-                            >
-                                <blockquote
-                                    style={{
-                                        ...scale(0.3),
-                                        margin: 0,
-                                        color: '#FFF'
-                                    }}
-                                >
-                                    {data.text}
-                                </blockquote>
-                                <p
-                                    style={{
-                                        color: '#396',
-                                        textAlign: 'right',
-                                        //fontStyle: 'italic',
-                                        marginRight: rhythm(1)
-                                    }}
-                                >
-                                    {'- ' + data.quotee}
-                                </p>
-                            </div>
-                        </section>
-                    </Parallax>
-                </div>
+                            {'- ' + data.quotee}
+                        </p>
+                    </div>
+                </section>
             );
         }
         return parallaxBanner;
