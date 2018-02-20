@@ -7,17 +7,12 @@ import { Responsive } from 'semantic-ui-react';
 import 'typeface-fira-sans';
 
 import { rhythm } from '../utils/typography';
-
-let rootPath = `/`;
-if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-    rootPath = __PATH_PREFIX__ + `/`;
-}
+import Logo from '../utils/n-logo.js';
 
 class NiiYeboahDotCom extends React.Component {
     render() {
         const boldGreen = {
             color: '#396'
-            //fontWeight: 'bold'
         };
         return (
             <span style={{ fontFamily: 'fira-sans, monospace' }}>
@@ -47,11 +42,11 @@ class Header extends React.Component {
         };
     }
     componentDidMount() {
-        const { setHeaderHeight, setPusherHeight, contentHeight } = this.props;
+        const { setHeaderHeight } = this.props;
         const headerHeight = ReactDOM.findDOMNode(this).clientHeight;
-        const menuVisible = window.location.pathname === rootPath;
+        const logo = new Logo('logo', 20);
         setHeaderHeight(headerHeight);
-        //setPusherHeight(headerHeight, menuVisible, contentHeight);
+        logo.animate();
     }
     render() {
         const { toggleVisibility, getVisible, setHeaderHeight } = this.props;
@@ -93,7 +88,6 @@ class Header extends React.Component {
                             margin: '0 auto',
                             maxWidth: rhythm(24),
                             padding: `${rhythm(0.5)} ${rhythm(3 / 4)}`
-                            //textAlign: 'center'
                         }}
                     >
                         <h3
@@ -117,6 +111,12 @@ class Header extends React.Component {
                             </Link>
                         </h3>
                     </div>
+                    <div
+                        id="logo"
+                        style={{
+                            margin: `${rhythm(0.65)} ${rhythm(3 / 4)} 0 0`
+                        }}
+                    />
                 </Headroom>
             </Responsive>
         );

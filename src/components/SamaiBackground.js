@@ -14,11 +14,8 @@ class SamaiBackground extends React.Component {
             samai.getPNG().then(src => {
                 this.setState({
                     styles: {
-                        backgroundImage: "url('" + src + "')",
-                        backgroundSize: samai.width + 'px',
-                        position: 'absolute',
-                        filter: 'brightness(30%)',
-                        ...{ top: 0, right: 0, bottom: 0, left: 0 }
+                        backgroundImage: `url('${src}')`,
+                        backgroundSize: `${samai.width}px`
                     }
                 });
             });
@@ -29,7 +26,8 @@ class SamaiBackground extends React.Component {
         const { styles } = this.state;
         return (
             <div>
-                <div style={styles} />
+                <div className="samai" style={styles} />
+                <div className="banner-image gradient" />
                 {children}
             </div>
         );

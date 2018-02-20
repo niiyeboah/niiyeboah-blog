@@ -5,23 +5,23 @@ import get from 'lodash/get';
 import Helmet from 'react-helmet';
 
 import Bio from '../components/Bio';
-import Bojo from './bojo.large.jpg';
-import BojoPH from './bojo.large.ph.jpg';
+import Bojo from '../assets/images/bojo.large.jpg';
+import BojoPH from '../assets/images/bojo.large.ph.jpg';
 import { rhythm } from '../utils/typography';
 import Quotes from '../utils/quotes/developerGoals';
 
 class BlogIndex extends React.Component {
     componentDidMount() {
         const quote = Quotes[Math.floor(Math.random() * Quotes.length)];
-        const {
-            setPusherHeight,
-            setContentHeight,
-            setTopParallax,
-            location
-        } = this.props;
+        const { setContentHeight, setBanner } = this.props;
         const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
-        setContentHeight(contentHeight);
-        setTopParallax({
+        setContentHeight(contentHeight, true);
+        this.setPusherHeight(
+            headerHeight,
+            menuVisible,
+            this.calculateHeight(contentHeight, true)
+        );
+        setBanner({
             image: Bojo,
             ph: BojoPH,
             text: quote,
@@ -79,7 +79,7 @@ export const pageQuery = graphql`
                         slug
                     }
                     frontmatter {
-                        date(formatString: "DD MMMM, YYYY")
+                        date(formatString: "MM-DD-YYYY")
                         title
                     }
                 }

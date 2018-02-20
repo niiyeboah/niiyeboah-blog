@@ -8,27 +8,26 @@ import { rhythm } from '../utils/typography';
 import Header from '../components/Header';
 import SideBarContent from '../components/SideBarContent';
 import SamaiBackground from '../components/SamaiBackground';
-import ParallaxBanner from '../components/ParallaxBanner';
-import './index.css';
+import LazyLoadBanner from '../components/LazyLoadBanner';
+import '../assets/css/index.css';
 
 const contentPadding = 42;
-const parallaxHeight = 420;
-let rootPath = `/`;
-if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-    rootPath = __PATH_PREFIX__ + `/`;
-}
+const bannerHeight = 420;
 
 class Template extends React.Component {
     constructor(props) {
         super(props);
-        this.toggleVisibility = this.toggleVisibility.bind(this);
-        this.setPusherHeight = this.setPusherHeight.bind(this);
-        this.setContentHeight = this.setContentHeight.bind(this);
-        this.setHeaderHeight = this.setHeaderHeight.bind(this);
-        this.setTopParallax = this.setTopParallax.bind(this);
-        this.getHeaderHeight = this.getHeaderHeight.bind(this);
-        this.getVisible = this.getVisible.bind(this);
         this.state = {};
+        this.toggleVisibility = this.toggleVisibility.bind(this);
+        this.screenWidthUpdate = this.screenWidthUpdate.bind(this);
+        // SETTERS
+        this.setContentHeight = this.setContentHeight.bind(this);
+        this.setPusherHeight = this.setPusherHeight.bind(this);
+        this.setHeaderHeight = this.setHeaderHeight.bind(this);
+        this.setBanner = this.setBanner.bind(this);
+        // GETTERS
+        this.getVisible = this.getVisible.bind(this);
+        this.getHeaderHeight = this.getHeaderHeight.bind(this);
     }
     toggleVisibility() {
         const {
@@ -37,19 +36,17 @@ class Template extends React.Component {
             headerHeight,
             contentHeight
         } = this.state;
-        this.setState({
-            menuVisible: !menuVisible
-        });
+        this.setState({ menuVisible: !menuVisible });
         this.setPusherHeight(headerHeight, !menuVisible, contentHeight);
     }
     setHeaderHeight(h) {
         this.setState({ headerHeight: h });
     }
-    setContentHeight(h) {
-        this.setState({ contentHeight: this.calculateHeight(h) });
+    setContentHeight(h, b) {
+        this.setState({ contentHeight: this.calculateHeight(h, b) });
     }
-    setTopParallax(bg) {
-        this.setState({ topParallax: bg });
+    setBanner(data) {
+        this.setState({ banner: data });
     }
     setPusherHeight(headerHeight, menuVisible, contentHeight) {
         if (typeof document !== 'undefined') {
@@ -58,9 +55,7 @@ class Template extends React.Component {
             if (menuVisible || contentHeight <= windowHeight) {
                 pusherHeight = windowHeight - headerHeight + 'px';
             }
-            this.setState({
-                pusherHeight: pusherHeight
-            });
+            this.setState({ pusherHeight: pusherHeight });
         }
     }
     getHeaderHeight() {
@@ -73,33 +68,41 @@ class Template extends React.Component {
         if (w <= 480) return 'wide';
         else return 'very wide';
     }
-    handleOnUpdate(e, { width }) {
+    screenWidthUpdate(e, { width }) {
         const { headerHeight, menuVisible, contentHeight } = this.state;
         this.setPusherHeight(headerHeight, menuVisible, contentHeight);
-        this.setState({
-            sideBarWidth: this.getSideBarWidth(width)
-        });
+        this.setState({ sideBarWidth: this.getSideBarWidth(width) });
     }
-    calculateHeight(h) {
-        return h + 2 * contentPadding + parallaxHeight;
+    calculateHeight(h, b) {
+        const bh = b ? bannerHeight : 0;
+        console.log({ b, bannerHeight, bh });
+        return h + 2 * contentPadding + bh;
     }
     componentDidMount() {
-        //const menuVisible = window.location.pathname === rootPath;
         const menuVisible = false;
-        const contentHeight = this.contentArea.clientHeight;
-
+        const contentHeight = this.contentArea.clientHeight - contentPadding;
+        const windowWidth = document.documentElement.clientWidth;
+        const headerHeight = document.querySelector('#header').clientHeight;
         this.state = {
             menuVisible: menuVisible,
-            sideBarWidth: this.getSideBarWidth(
-                document.documentElement.clientWidth
-            )
+            sideBarWidth: this.getSideBarWidth(windowWidth),
+            year: new Date().getFullYear()
         };
-        this.setContentHeight(contentHeight);
+        this.setContentHeight(contentHeight, true);
         this.setPusherHeight(
-            document.querySelector('#header').clientHeight,
+            headerHeight,
             menuVisible,
-            this.calculateHeight(contentHeight)
+            this.calculateHeight(contentHeight, true)
         );
+        console.log(
+            'CH: ' + this.calculateHeight(contentHeight, false),
+            contentHeight
+        );
+    }
+    componentDidUpdate() {
+        //const contentHeight = this.contentArea.clientHeight - contentPadding;
+        //this.setContentHeight(contentHeight);
+        console.log(this.state.contentHeight);
     }
     render() {
         const { children } = this.props;
@@ -108,29 +111,21 @@ class Template extends React.Component {
             sideBarWidth,
             pusherHeight,
             headerHeight,
-            topParallax
+            banner,
+            year
         } = this.state;
         return (
             <Responsive
                 as={'div'}
-                onUpdate={this.handleOnUpdate.bind(this)}
-                style={{
-                    maxWidth: 'auto'
-                }}
+                onUpdate={this.screenWidthUpdate.bind(this)}
+                style={{ maxWidth: 'auto' }}
             >
                 <Header
                     getVisible={this.getVisible}
-                    contentHeight={this.contentHeight}
-                    setPusherHeight={this.setPusherHeight}
                     setHeaderHeight={this.setHeaderHeight}
                     toggleVisibility={this.toggleVisibility}
                 />
-                <Sidebar.Pushable
-                    as={'div'}
-                    style={{
-                        maxWidth: 'auto'
-                    }}
-                >
+                <Sidebar.Pushable as={'div'} style={{ maxWidth: 'auto' }}>
                     <Sidebar
                         as={'div'}
                         width={sideBarWidth}
@@ -174,9 +169,9 @@ class Template extends React.Component {
                                         cursor: 'pointer'
                                     }}
                                 />
-                                <ParallaxBanner
-                                    data={topParallax}
-                                    height={parallaxHeight}
+                                <LazyLoadBanner
+                                    data={banner}
+                                    height={bannerHeight}
                                 />
                                 <section
                                     style={{
@@ -190,11 +185,16 @@ class Template extends React.Component {
                                     {children({
                                         ...this.props,
                                         layout: false,
-                                        setPusherHeight: this.setPusherHeight,
-                                        setContentHeight: this.setContentHeight,
-                                        setTopParallax: this.setTopParallax
+                                        setBanner: this.setBanner,
+                                        setContentHeight: this.setContentHeight
                                     })}
                                 </section>
+                                <footer>
+                                    <div className="copyright" title="▪◾◼⬛">
+                                        <i data-icon="n" className="icon" />
+                                        <span>{` © ${year}`}</span>
+                                    </div>
+                                </footer>
                             </Dimmer.Dimmable>
                         </main>
                     </Sidebar.Pusher>

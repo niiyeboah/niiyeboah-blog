@@ -9,20 +9,10 @@ import { rhythm, scale } from '../utils/typography';
 
 class BlogPostTemplate extends React.Component {
     componentDidMount() {
-        const {
-            setPusherHeight,
-            setContentHeight,
-            setTopParallax,
-            location
-        } = this.props;
         const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
-        setContentHeight(contentHeight);
-        setTopParallax(null);
-        setPusherHeight(
-            document.querySelector('#header').clientHeight,
-            location.pathname === '/',
-            contentHeight
-        );
+        const { setContentHeight, setBanner } = this.props;
+        setContentHeight(contentHeight, false);
+        setBanner(null);
     }
     render() {
         const post = this.props.data.markdownRemark;
@@ -95,7 +85,7 @@ export const pageQuery = graphql`
             html
             frontmatter {
                 title
-                date(formatString: "MMMM DD, YYYY")
+                date(formatString: "MM-DD-YYYY")
             }
         }
     }

@@ -5,19 +5,14 @@ import 'semantic-ui-css/components/icon.min.css';
 import 'semantic-ui-css/components/grid.min.css';
 import 'semantic-ui-css/components/image.min.css';
 import 'semantic-ui-css/components/list.min.css';
-import Avatar from './bojo.square.jpg';
 
 import { rhythm, scale } from '../utils/typography';
+import Avatar from '../assets/images/bojo.square.jpg';
 
 class SideBarContent extends React.Component {
     render() {
         const { toggleVisibility } = this.props;
-        const iconStyles = { color: '#396' };
         const listItemStyle = { marginBottom: rhythm(0.5) };
-        const linkStyle = {
-            textShadow: 'none',
-            color: '#FFF'
-        };
         const navLinkData = [
             {
                 path: '/',
@@ -33,11 +28,11 @@ class SideBarContent extends React.Component {
         ];
         const navListItems = navLinkData.map((data, i) => (
             <List.Item style={listItemStyle} key={i}>
-                <List.Icon name={data.icon} style={iconStyles} />
+                <List.Icon name={data.icon} className="icon" />
                 <List.Content>
                     <Link
                         to={data.path}
-                        style={linkStyle}
+                        className="link"
                         onClick={data.onClick}
                     >
                         {data.text}
@@ -72,9 +67,9 @@ class SideBarContent extends React.Component {
         ];
         const contactListItems = contactLinkData.map((data, i) => (
             <List.Item style={{ ...listItemStyle, ...data.styles }} key={i}>
-                <List.Icon name={data.icon} style={iconStyles} />
+                <List.Icon name={data.icon} className="icon" />
                 <List.Content>
-                    <a href={data.url} style={linkStyle}>
+                    <a href={data.url} className="link">
                         {data.text}
                     </a>
                 </List.Content>
@@ -82,9 +77,9 @@ class SideBarContent extends React.Component {
         ));
         return (
             <Grid
+                className="sidebar-content"
                 style={{
                     padding: `${rhythm(1.5)} 20px`,
-                    color: '#FFF',
                     ...scale(-0.2)
                 }}
             >
@@ -94,32 +89,17 @@ class SideBarContent extends React.Component {
                             src={Avatar}
                             size="small"
                             circular
-                            style={{
-                                margin: `0 auto ${rhythm(1)}`,
-                                padding: '5px',
-                                border: '2px solid #396'
-                            }}
+                            style={{ margin: `0 auto ${rhythm(1)}` }}
                         />
                         <div
+                            className="summary"
                             style={{
-                                textAlign: 'center',
-                                color: '#FFF',
                                 padding: `${rhythm(0.25)} 0`,
-                                border: 'solid #042',
-                                borderWidth: '1px 0',
-                                marginBottom: '5px',
                                 ...scale(-0.15)
                             }}
                         >
                             Software Developer
-                            <span
-                                style={{
-                                    color: '#396',
-                                    fontWeight: 'bold'
-                                }}
-                            >
-                                {' // '}
-                            </span>
+                            <span className="doubleSlash">{' // '}</span>
                             Technology Enthusiast
                         </div>
                     </Grid.Column>

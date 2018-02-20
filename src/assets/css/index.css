@@ -1,0 +1,159 @@
+@charset "UTF-8";
+/* LAYOUT */
+.header-container {
+    text-align: center;
+}
+footer .copyright {
+    float: right;
+    margin: 10px 20px;
+    position: relative;
+}
+footer .copyright i {
+    float: right;
+    position: absolute;
+    top: 4px;
+    font-size: 24px;
+}
+footer .copyright span {
+    display: inline-block;
+    margin-left: 28px;
+}
+/* BANNER */
+.banner-image {
+    background-size: 100% auto;
+    background-position: right;
+    max-width: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: opacity 1s ease-in;
+}
+.banner-image.loading {
+    opacity: 0;
+}
+.banner-image.success {
+    opacity: 1;
+}
+.banner-image.placeholder {
+    filter: blur(10px);
+    opacity: 1;
+}
+.banner-image.gradient {
+    background: radial-gradient(
+        farthest-corner at 0 0,
+        transparent 0%,
+        #111 100%
+    );
+}
+.banner-container {
+    position: relative;
+}
+.banner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+.banner .quotee {
+    color: #396;
+    text-align: right;
+    text-shadow: none;
+}
+.banner .quote {
+    margin: 0;
+    color: #fff;
+}
+/* HEADER */
+#logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#logo canvas {
+    border: 2px solid#396;
+}
+/* SAMAI */
+.samai {
+    position: absolute;
+    filter: brightness(40%);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+/* SIDE CONTENT */
+.sidebar-content img {
+    padding: 5px;
+    border: 2px solid #396;
+}
+.sidebar-content .link {
+    text-shadow: none;
+    color: #fff;
+}
+.sidebar-content .icon {
+    color: #396;
+}
+.sidebar-content .summary {
+    text-align: center;
+    color: #fff;
+    border: solid #042;
+    border-width: 1px 0;
+    margin-bottom: 5px;
+}
+.sidebar-content .doubleSlash {
+    color: #396;
+    font-weight: bold;
+}
+/* N */
+@font-face {
+    font-family: 'n-logo-font';
+    src: url('../fonts/n.eot');
+    src: url('../fonts/n.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/n.woff') format('woff'),
+        url('../fonts/n.ttf') format('truetype'),
+        url('../fonts/n.svg#n-logo-font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[data-icon]:before {
+    font-family: 'n-logo-font' !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    /* speak: none; */
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+[class^='n-']:before,
+[class*=' n-']:before {
+    font-family: 'n-logo-font' !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    /* speak: none; */
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.n-logo:before {
+    content: '\6e';
+}
+/* MEDIA QUERIES */
+@media only screen and (max-width: 480px) {
+    blockquote {
+        border-left-color: #396;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    .banner-image {
+        background-size: auto 100%;
+        background-position: center;
+    }
+}

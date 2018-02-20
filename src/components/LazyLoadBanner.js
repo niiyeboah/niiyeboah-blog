@@ -2,7 +2,7 @@ import React from 'react';
 
 import { rhythm, scale } from '../utils/typography';
 
-class ParallaxBanner extends React.Component {
+class LazyLoadBanner extends React.Component {
     state = {};
     componentDidMount() {
         this.state = { loaded: false, imageClass: 'loading' };
@@ -17,18 +17,11 @@ class ParallaxBanner extends React.Component {
                     throw new Error('failed to load image');
                 };
                 largeImage.onload = () => {
-                    window.setTimeout(() => {
-                        this.setState({
-                            imageClass: 'loading success',
-                            image: largeImage.src,
-                            loaded: true
-                        });
-                        window.setTimeout(() => {
-                            this.setState({
-                                imageClass: 'loading complete'
-                            });
-                        }, 100);
-                    }, 2000);
+                    this.setState({
+                        imageClass: 'success',
+                        image: largeImage.src,
+                        loaded: true
+                    });
                 };
             } catch (e) {
                 console.log(e);
@@ -38,10 +31,9 @@ class ParallaxBanner extends React.Component {
     render() {
         const { imageClass, image } = this.state;
         const { data, height = 420 } = this.props;
-        console.log(image, data);
-        let parallaxBanner = null;
+        let lazyLoadBanner = null;
         if (data && data.text) {
-            parallaxBanner = (
+            lazyLoadBanner = (
                 <section
                     className="banner-container"
                     style={{
@@ -49,11 +41,18 @@ class ParallaxBanner extends React.Component {
                     }}
                 >
                     <div
-                        className={'banner-image'}
+                        className={`${imageClass} banner-image placeholder`}
                         style={{
-                            backgroundImage: 'url(' + image || data.ph + "')"
+                            backgroundImage: `url('${data.ph}')`
                         }}
                     />
+                    <div
+                        className={`${imageClass} banner-image`}
+                        style={{
+                            backgroundImage: `url('${image}')`
+                        }}
+                    />
+                    <div className={`banner-image gradient`} />
                     <div
                         className="banner"
                         style={{
@@ -74,8 +73,8 @@ class ParallaxBanner extends React.Component {
                 </section>
             );
         }
-        return parallaxBanner;
+        return lazyLoadBanner;
     }
 }
 
-export default ParallaxBanner;
+export default LazyLoadBanner;
