@@ -8,8 +8,9 @@ class SamaiBackground extends React.Component {
             const samai = new Samai({
                 width: 600,
                 fabric_enabled: true,
-                dark_colors: ['#222', '#072'],
-                light_colors: ['#3A6', '#444', '#777']
+                dark_colors: ['#444', '#072'],
+                light_colors: ['#3A6', '#777', '#AAA'],
+                n: 42
             });
             samai.getPNG().then(src => {
                 this.setState({

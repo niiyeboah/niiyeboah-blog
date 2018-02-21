@@ -1,20 +1,23 @@
 ---
 title: Hello World
-date: "2015-05-01T22:12:03.284Z"
+date: "2018-02-21"
 ---
 
-This is my first post on my new fake blog! How exciting!
+![Hello World](./helloworld.gif 'Hello World')
 
-I'm sure I'll write a lot more interesting things in the future.
+I finally decided to start a blog. Since I was young, I have always actively avoided writing. Growing up, I had an affinity for maths and sciences and even arts but, for some reason, when it came to English, literature and foreign languages I wasn't interested. However, through the years I have gained an immense appreciation for the importance of effective communication. For instance, well written copy on an e-commerce website or a social media campaign could make the difference in getting millions of sales or clear and easily understood documentation for a new open-source library could be the catalyst that spurs developers to adopt the technology. So in an attempt to improve my writing skills and also share some of my opinions, philosophies, ideas or any interesting things I find on the internet, I have created this website.
 
-Oh, and here's a great quote from this Wikipedia on [salted duck eggs](http://en.wikipedia.org/wiki/Salted_duck_egg).
+The main subject I'll focus on is web development but I may also make posts on many other topics. These could include, [technologies](https://www.wsj.com/articles/how-blockchain-can-end-poverty-1516925459) which have great potential to impact developing nations like Ghana, education tech and the need to teach coding at a younger age, generative and computational art, eSports and the competitive gaming industry and the [Singularity](https://en.wikipedia.org/wiki/Technological_singularity) (this topic is particularly deep).
 
-> A salted duck egg is a Chinese preserved food product made by soaking duck
-> eggs in brine, or packing each egg in damp, salted charcoal. In Asian
-> supermarkets, these eggs are sometimes sold covered in a thick layer of salted
-> charcoal paste. The eggs may also be sold with the salted paste removed,
-> wrapped in plastic, and vacuum packed. From the salt curing process, the
-> salted duck eggs have a briny aroma, a gelatin-like egg white and a
-> firm-textured, round yolk that is bright orange-red in color.
+![Techy Blogging Techniques](./techblogging.gif 'Techy Blogging Techniques')
 
-![Chinese Salty Egg](./salty_egg.jpg)
+Admittedly it has taken a bit too long to build this thing. After getting over whatever the programmers version of writers block is and also overcoming a severe case of [JavaScript framework fatigue](https://github.com/sorrycc/awesome-javascript/blob/master/README.md) I finally settled on the stack for this site:
+
+* [Gatsby.js](https://www.gatsbyjs.org/) | Static site generator
+* [React.js](https://reactjs.org/) | JavaScript front-end library
+* [Semantic UI React](https://react.semantic-ui.com/introduction) | CSS framework
+* [GitHub Pages](https://pages.github.com/) | Static site host
+
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/niiyeboah/niiyeboah-com)
+
+Currently I am managing the posts with GitHub but I plan to use a headless CMS like [NetlifyCMS](https://www.netlifycms.org/) or [Contentful](https://www.contentful.com/) in the future. In my next post I will talk about why I chose to use Gatsby to build this site and mention my thoughts on some of the latest trends in the industry like the [JAMStack](https://jamstack.org/), [Headless CMSs](https://headlesscms.org/), [Serverless Architechtures](https://aws.amazon.com/serverless/) and [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/).

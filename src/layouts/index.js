@@ -20,12 +20,12 @@ class Template extends React.Component {
         this.state = {};
         this.toggleVisibility = this.toggleVisibility.bind(this);
         this.screenWidthUpdate = this.screenWidthUpdate.bind(this);
-        // SETTERS
+        /* Setters */
         this.setContentHeight = this.setContentHeight.bind(this);
         this.setPusherHeight = this.setPusherHeight.bind(this);
         this.setHeaderHeight = this.setHeaderHeight.bind(this);
         this.setBanner = this.setBanner.bind(this);
-        // GETTERS
+        /* Getters */
         this.getVisible = this.getVisible.bind(this);
         this.getHeaderHeight = this.getHeaderHeight.bind(this);
     }
@@ -34,28 +34,40 @@ class Template extends React.Component {
             menuVisible,
             pusherHeight,
             headerHeight,
-            contentHeight
+            contentHeight,
+            banner
         } = this.state;
         this.setState({ menuVisible: !menuVisible });
-        this.setPusherHeight(headerHeight, !menuVisible, contentHeight);
+        this.setPusherHeight(headerHeight, !menuVisible, contentHeight, banner);
     }
     setHeaderHeight(h) {
         this.setState({ headerHeight: h });
     }
     setContentHeight(h, b) {
         this.setState({ contentHeight: this.calculateHeight(h, b) });
+        console.log(this.calculateHeight(h, b));
     }
     setBanner(data) {
         this.setState({ banner: data });
     }
-    setPusherHeight(headerHeight, menuVisible, contentHeight) {
+    setPusherHeight(headerHeight, menuVisible, contentHeight, banner) {
         if (typeof document !== 'undefined') {
             const windowHeight = document.documentElement.clientHeight;
+            const calculatedHeight = this.calculateHeight(
+                contentHeight,
+                banner
+            );
             let pusherHeight = 'auto';
-            if (menuVisible || contentHeight <= windowHeight) {
+            if (menuVisible || calculatedHeight <= windowHeight) {
                 pusherHeight = windowHeight - headerHeight + 'px';
             }
             this.setState({ pusherHeight: pusherHeight });
+            console.log({
+                pusherHeight,
+                menuVisible,
+                contentHeight,
+                windowHeight
+            });
         }
     }
     getHeaderHeight() {
@@ -69,13 +81,12 @@ class Template extends React.Component {
         else return 'very wide';
     }
     screenWidthUpdate(e, { width }) {
-        const { headerHeight, menuVisible, contentHeight } = this.state;
-        this.setPusherHeight(headerHeight, menuVisible, contentHeight);
+        const { headerHeight, menuVisible, contentHeight, banner } = this.state;
+        this.setPusherHeight(headerHeight, menuVisible, contentHeight, banner);
         this.setState({ sideBarWidth: this.getSideBarWidth(width) });
     }
     calculateHeight(h, b) {
         const bh = b ? bannerHeight : 0;
-        console.log({ b, bannerHeight, bh });
         return h + 2 * contentPadding + bh;
     }
     componentDidMount() {
@@ -89,20 +100,20 @@ class Template extends React.Component {
             year: new Date().getFullYear()
         };
         this.setContentHeight(contentHeight, true);
-        this.setPusherHeight(
-            headerHeight,
-            menuVisible,
-            this.calculateHeight(contentHeight, true)
-        );
-        console.log(
-            'CH: ' + this.calculateHeight(contentHeight, false),
-            contentHeight
-        );
+        /* If the menu is visible set the pusher height */
+        if (menuVisible) {
+            this.setPusherHeight(
+                headerHeight,
+                menuVisible,
+                this.calculateHeight(contentHeight, true),
+                true
+            );
+        }
     }
     componentDidUpdate() {
-        //const contentHeight = this.contentArea.clientHeight - contentPadding;
-        //this.setContentHeight(contentHeight);
-        console.log(this.state.contentHeight);
+        document.querySelectorAll('a > img').forEach(el => {
+            el.parentElement.className += ' image-link';
+        });
     }
     render() {
         const { children } = this.props;
@@ -186,11 +197,12 @@ class Template extends React.Component {
                                         ...this.props,
                                         layout: false,
                                         setBanner: this.setBanner,
+                                        setPusherHeight: this.setPusherHeight,
                                         setContentHeight: this.setContentHeight
                                     })}
                                 </section>
                                 <footer>
-                                    <div className="copyright" title="▪◾◼⬛">
+                                    <div className="copyright" title="👌">
                                         <i data-icon="n" className="icon" />
                                         <span>{` © ${year}`}</span>
                                     </div>

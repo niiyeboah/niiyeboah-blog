@@ -13,20 +13,21 @@ import Quotes from '../utils/quotes/developerGoals';
 class BlogIndex extends React.Component {
     componentDidMount() {
         const quote = Quotes[Math.floor(Math.random() * Quotes.length)];
-        const { setContentHeight, setBanner } = this.props;
+        const { setContentHeight, setPusherHeight, setBanner } = this.props;
         const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
         setContentHeight(contentHeight, true);
-        this.setPusherHeight(
-            headerHeight,
-            menuVisible,
-            this.calculateHeight(contentHeight, true)
-        );
         setBanner({
             image: Bojo,
             ph: BojoPH,
             text: quote,
             quotee: 'Developer Goals'
         });
+        setPusherHeight(
+            document.querySelector('#header').clientHeight,
+            false,
+            contentHeight,
+            true
+        );
     }
     render() {
         const siteTitle = get(this, 'props.data.site.siteMetadata.title');
