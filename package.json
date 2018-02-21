@@ -1,10 +1,10 @@
 {
     "name": "niiyeboah-blog",
-    "description": "A blog about web development and technology 💬",
+    "description": "💬",
     "version": "1.0.0",
     "author": "Nii Yeboah <contact@niiyeboah.com>",
     "bugs": {
-        "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
+        "url": "https://github.com/niiyeboah/niiyeboah-blog/issues"
     },
     "dependencies": {
         "gatsby": "^1.9.158",
@@ -42,24 +42,24 @@
         "gh-pages": "^1.1.0",
         "prettier": "^1.10.2"
     },
-    "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-    "keywords": [
-        "gatsby"
-    ],
+    "homepage": "https://github.com/niiyeboah/niiyeboah-blog.git#readme",
+    "keywords": ["gatsby", "blog", "static site", "personal website"],
     "license": "MIT",
-    "main": "n/a",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+        "url": "git+https://github.com/niiyeboah/niiyeboah-blog.git"
     },
     "scripts": {
         "dev": "gatsby develop",
-        "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
+        "lint":
+            "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
+        "format":
+            "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
         "develop": "gatsby develop",
         "build": "gatsby build",
         "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-        "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+        "fix-semi":
+            "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
     }
 }
