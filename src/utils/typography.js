@@ -4,6 +4,9 @@ import fairyGateTheme from 'typography-theme-fairy-gates';
 const green = '#396';
 
 fairyGateTheme.overrideThemeStyles = () => ({
+    body: {
+        fontFamily: `'Quattrocento Sans', verdana, sans-serif`
+    },
     blockquote: {
         borderColor: green
     },

@@ -23,10 +23,10 @@ class SamaiBackground extends React.Component {
         }
     }
     render() {
-        const { children } = this.props;
+        const { children, className } = this.props;
         const { styles } = this.state;
         return (
-            <div>
+            <div className={className}>
                 <div className="samai" style={styles} />
                 <div className="banner-image gradient" />
                 {children}

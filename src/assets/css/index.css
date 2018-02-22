@@ -1,13 +1,37 @@
-@charset "UTF-8";
 /* LAYOUT */
 .header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.85);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2.5px 7.5px;
+    transition: width 1s ease-in-out;
+}
+.header {
     text-align: center;
+    margin: 0 auto;
+}
+.header h3 {
+    margin: 0;
+    color: #fff;
+}
+.header-title {
+    font-family: fira-sans, monospace;
+}
+.header-title span {
+    color: #396;
+}
+.content-area {
+    position: relative;
 }
 footer {
     position: absolute;
     right: 0;
     left: 0;
     bottom: 0;
+    font-weight: bold;
 }
 footer .copyright {
     float: right;
@@ -23,6 +47,108 @@ footer .copyright i {
 footer .copyright span {
     display: inline-block;
     margin-left: 32px;
+}
+/* MENU */
+.menu .bars-icon {
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+.menu .close-icon {
+    cursor: pointer;
+    color: #fff;
+    z-index: 1;
+    align-self: flex-start;
+}
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+}
+.overlay nav {
+    margin: auto;
+}
+.overlay img {
+    z-index: 1;
+    align-self: flex-end;
+    width: 42px;
+    height: 42px;
+}
+.overlay ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+    height: 100%;
+    position: relative;
+}
+.overlay ul:first-child {
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #222;
+}
+.overlay ul li {
+    display: flex;
+}
+.overlay ul li > span {
+    color: #fff;
+}
+.overlay ul li > span:first-child {
+    margin: auto 10px;
+    color: #396;
+}
+.overlay ul li a {
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+
+    text-shadow: none;
+    color: #fff;
+}
+.overlay ul li a:hover,
+.overlay ul li a:focus {
+    color: #777;
+}
+.overlay-hugeinc {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.5s, visibility 0s 0.5s, transform 0.5s;
+    transition: opacity 0.5s, visibility 0s 0.5s, transform 0.5s;
+    -webkit-transform: translateY(25%) rotateX(-35deg);
+    transform: translateY(25%) rotateX(-35deg);
+}
+.overlay-hugeinc.menu-visible {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    -webkit-transform: translateY(0) rotateX(0);
+    transform: translateY(0) rotateX(0);
+}
+.overlay-hugeinc.menu-visible nav ul {
+    opacity: 1;
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+.overlay-hugeinc nav {
+    -moz-perspective: 300px;
+    perspective: none;
+}
+.overlay-hugeinc nav ul {
+    opacity: 0.4;
+    -webkit-transform: translateY(-25%) rotateX(35deg);
+    transform: translateY(-25%) rotateX(35deg);
+    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0.5s;
 }
 /* BANNER */
 .banner-image {
@@ -87,7 +213,7 @@ footer .copyright span {
 /* SAMAI */
 .samai {
     position: absolute;
-    filter: brightness(40%);
+    filter: brightness(20%);
     top: 0;
     right: 0;
     bottom: 0;
@@ -115,44 +241,6 @@ footer .copyright span {
 .sidebar-content .doubleSlash {
     color: #396;
     font-weight: bold;
-}
-/* N */
-@font-face {
-    font-family: 'n-logo-font';
-    src: url('../fonts/n.eot');
-    src: url('../fonts/n.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/n.woff') format('woff'),
-        url('../fonts/n.ttf') format('truetype'),
-        url('../fonts/n.svg#n-logo-font') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-[data-icon]:before {
-    font-family: 'n-logo-font' !important;
-    content: attr(data-icon);
-    font-style: normal !important;
-    font-weight: normal !important;
-    font-variant: normal !important;
-    text-transform: none !important;
-    /* speak: none; */
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-[class^='n-']:before,
-[class*=' n-']:before {
-    font-family: 'n-logo-font' !important;
-    font-style: normal !important;
-    font-weight: normal !important;
-    font-variant: normal !important;
-    text-transform: none !important;
-    /* speak: none; */
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.n-logo:before {
-    content: '\6e';
 }
 /* MEDIA QUERIES */
 @media only screen and (max-width: 480px) {

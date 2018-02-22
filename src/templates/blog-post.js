@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
@@ -9,16 +8,7 @@ import { rhythm, scale } from '../utils/typography';
 
 class BlogPostTemplate extends React.Component {
     componentDidMount() {
-        const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
-        const { setContentHeight, setPusherHeight, setBanner } = this.props;
-        setContentHeight(contentHeight, false);
-        setBanner(null);
-        setPusherHeight(
-            document.querySelector('#header').clientHeight,
-            false,
-            contentHeight,
-            false
-        );
+        this.props.setBanner(null);
     }
     render() {
         const post = this.props.data.markdownRemark;

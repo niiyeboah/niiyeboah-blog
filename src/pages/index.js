@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
@@ -12,22 +11,12 @@ import Quotes from '../utils/quotes/developerGoals';
 
 class BlogIndex extends React.Component {
     componentDidMount() {
-        const quote = Quotes[Math.floor(Math.random() * Quotes.length)];
-        const { setContentHeight, setPusherHeight, setBanner } = this.props;
-        const contentHeight = ReactDOM.findDOMNode(this).clientHeight;
-        setContentHeight(contentHeight, true);
-        setBanner({
+        this.props.setBanner({
             image: Bojo,
             ph: BojoPH,
-            text: quote,
+            text: Quotes[Math.floor(Math.random() * Quotes.length)],
             quotee: 'Developer Goals'
         });
-        setPusherHeight(
-            document.querySelector('#header').clientHeight,
-            false,
-            contentHeight,
-            true
-        );
     }
     render() {
         const siteTitle = get(this, 'props.data.site.siteMetadata.title');

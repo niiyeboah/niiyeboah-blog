@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { rhythm, scale } from '../utils/typography';
+import Logo from '../utils/n-logo.js';
 
 class LazyLoadBanner extends React.Component {
     state = {};
@@ -17,10 +18,12 @@ class LazyLoadBanner extends React.Component {
                     throw new Error('failed to load image');
                 };
                 largeImage.onload = () => {
-                    this.setState({
-                        imageClass: 'success',
-                        image: largeImage.src,
-                        loaded: true
+                    new Logo('logo', 20).animate(() => {
+                        this.setState({
+                            imageClass: 'success',
+                            image: largeImage.src,
+                            loaded: true
+                        });
                     });
                 };
             } catch (e) {
@@ -67,7 +70,7 @@ class LazyLoadBanner extends React.Component {
                             className="quotee"
                             style={{ marginRight: rhythm(1) }}
                         >
-                            {'- ' + data.quotee}
+                            {`- ${data.quotee}`}
                         </p>
                     </div>
                 </section>

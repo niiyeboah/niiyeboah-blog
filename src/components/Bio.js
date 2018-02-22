@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react';
 import 'semantic-ui-css/components/image.min.css';
 
 import { rhythm } from '../utils/typography';
-import Avatar from '../assets/images/rehab.square.jpg';
+import Avatar from '../assets/images/bojo.square.jpg';
 
 class Bio extends React.Component {
     render() {
