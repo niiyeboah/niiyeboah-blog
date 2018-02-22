@@ -1,5 +1,5 @@
 module.exports = {
-    pathPrefix: '/niiyeboah-blog',
+    // pathPrefix: '/niiyeboah-blog',
     siteMetadata: {
         title: 'niiyeboah.com',
         author: 'Nii Yeboah',
