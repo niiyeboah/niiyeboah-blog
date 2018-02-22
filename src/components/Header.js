@@ -52,7 +52,7 @@ class Header extends React.Component {
                 <div
                     id="logo"
                     style={{
-                        margin: `${rhythm(0.6)} ${rhythm(3 / 4)} 0 0`
+                        margin: `${rhythm(0.55)} ${rhythm(3 / 4)} 0 0`
                     }}
                 />
             </section>

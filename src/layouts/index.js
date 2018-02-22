@@ -65,7 +65,10 @@ class Template extends React.Component {
                         onClick={this.toggleMenu}
                         className="bars-icon"
                         style={{
-                            padding: `${rhythm(0.3)} ${rhythm(0.6)}`,
+                            padding:
+                                `${rhythm(0.25)}` +
+                                ' 25px 25px ' +
+                                `${rhythm(0.6)}`,
                             ...scale(0.5)
                         }}
                     >
@@ -78,7 +81,10 @@ class Template extends React.Component {
                             onClick={this.toggleMenu}
                             className="close-icon"
                             style={{
-                                padding: `${rhythm(0.3)} ${rhythm(0.6)}`,
+                                padding:
+                                    `${rhythm(0.35)}` +
+                                    ' 25px 25px ' +
+                                    `${rhythm(0.6)}`,
                                 ...scale(0.5)
                             }}
                         >
