@@ -18,6 +18,6 @@ Admittedly it has taken a bit too long to build this thing. After getting over w
 * [Semantic UI React](https://react.semantic-ui.com/introduction) | CSS framework
 * [GitHub Pages](https://pages.github.com/) | Static site host
 
-[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/niiyeboah/niiyeboah-com)
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat-square)](https://stackshare.io/niiyeboah/niiyeboah-com)
 
-Currently I am managing the posts with GitHub but I plan to use a headless CMS like [NetlifyCMS](https://www.netlifycms.org/) or [Contentful](https://www.contentful.com/) in the future. In my next post I will talk about why I chose to use Gatsby to build this site and mention my thoughts on some of the latest trends in the industry like the [JAMStack](https://jamstack.org/), [Headless CMSs](https://headlesscms.org/), [Serverless Architechtures](https://aws.amazon.com/serverless/) and [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/).
+I am currently managing the posts with GitHub but I plan to use a headless CMS like [NetlifyCMS](https://www.netlifycms.org/) or [Contentful](https://www.contentful.com/) in the future. In my next post I will talk about why I chose to use Gatsby to build this site and mention my thoughts on some of the latest trends in the industry like the [JAMStack](https://jamstack.org/), [Headless CMSs](https://headlesscms.org/), [Serverless Architechtures](https://aws.amazon.com/serverless/) and [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/).
