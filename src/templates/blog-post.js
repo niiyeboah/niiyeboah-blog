@@ -11,12 +11,17 @@ class BlogPostTemplate extends React.Component {
         this.props.setBanner(null);
     }
     render() {
+        const location = this.props.location.pathname.substring(1);
         const post = this.props.data.markdownRemark;
         const siteTitle = get(this.props, 'data.site.siteMetadata.title');
+        const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
         const { previous, next } = this.props.pathContext;
         return (
             <div style={this.props.transition && this.props.transition.style}>
-                <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
+                <Helmet>
+                    <title>{`${post.frontmatter.title} | ${siteTitle}`}</title>
+                    <link rel="canonical" href={siteUrl + location} />
+                </Helmet>
                 <h1>{post.frontmatter.title}</h1>
                 <p
                     style={{
@@ -73,7 +78,7 @@ export const pageQuery = graphql`
         site {
             siteMetadata {
                 title
-                author
+                siteUrl
             }
         }
         markdownRemark(fields: { slug: { eq: $slug } }) {

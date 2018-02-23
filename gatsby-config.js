@@ -1,10 +1,11 @@
+const config = require('./data/config');
+
 module.exports = {
-    // pathPrefix: '/niiyeboah-blog',
     siteMetadata: {
         title: 'niiyeboah.com',
         author: 'Nii Yeboah',
-        description: '💬',
-        siteUrl: 'https://niiyeboah.com/'
+        description: 'My personal website and blog developed with Gatsby.js 💬',
+        siteUrl: 'http://niiyeboah.com/'
     },
     plugins: [
         {
@@ -41,7 +42,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
-                trackingId: `UA-112620364-1`
+                trackingId: config.googleAnalyticsID
             }
         },
         `gatsby-plugin-feed`,
@@ -52,6 +53,7 @@ module.exports = {
             options: {
                 pathToConfigModule: 'src/utils/typography'
             }
-        }
+        },
+        `gatsby-plugin-sitemap`
     ]
 };

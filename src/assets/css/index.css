@@ -49,6 +49,16 @@ footer .copyright span {
     margin-left: 32px;
 }
 /* MENU */
+.menu .toggle-menu {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .menu .bars-icon {
     display: block;
     cursor: pointer;
@@ -123,21 +133,9 @@ footer .copyright span {
     visibility: hidden;
     -webkit-transition: opacity 0.5s, visibility 0s 0.5s, transform 0.5s;
     transition: opacity 0.5s, visibility 0s 0.5s, transform 0.5s;
-    -webkit-transform: translateY(25%) rotateX(-35deg);
-    transform: translateY(25%) rotateX(-35deg);
-}
-.overlay-hugeinc.menu-visible {
-    opacity: 1;
-    visibility: visible;
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-    -webkit-transform: translateY(0) rotateX(0);
-    transform: translateY(0) rotateX(0);
-}
-.overlay-hugeinc.menu-visible nav ul {
-    opacity: 1;
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
+    -webkit-transform: translateY(30%) rotateX(-35deg);
+    transform: translateY(30%) rotateX(-35deg);
+    transition-timing-function: ease-in-out;
 }
 .overlay-hugeinc nav {
     -moz-perspective: 300px;
@@ -145,10 +143,24 @@ footer .copyright span {
 }
 .overlay-hugeinc nav ul {
     opacity: 0.4;
-    -webkit-transform: translateY(-25%) rotateX(35deg);
-    transform: translateY(-25%) rotateX(35deg);
-    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
-    transition: transform 0.5s, opacity 0.5s;
+    -webkit-transform: translateY(30%) rotateX(-35deg);
+    transform: translateY(30%) rotateX(-35deg);
+    -webkit-transition: -webkit-transform 0.6s, opacity 0.5s;
+    transition: transform 0.6s, opacity 0.5s;
+    transition-timing-function: ease-in-out;
+}
+.overlay-hugeinc.menu-visible {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
+    -webkit-transform: translateY(0) rotateX(0);
+    transform: translateY(0) rotateX(0);
+}
+.overlay-hugeinc.menu-visible nav ul {
+    opacity: 1;
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
 }
 /* BANNER */
 .banner-image {
@@ -173,11 +185,7 @@ footer .copyright span {
     opacity: 1;
 }
 .banner-image.gradient {
-    background: radial-gradient(
-        farthest-corner at 0 0,
-        transparent 0%,
-        #111 100%
-    );
+    background: radial-gradient(farthest-corner at 0 0, transparent 0%, #111 100%);
 }
 .banner-container {
     position: relative;
