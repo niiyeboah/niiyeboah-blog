@@ -4,8 +4,8 @@ module.exports = {
     siteMetadata: {
         title: 'niiyeboah.com',
         author: 'Nii Yeboah',
-        description: 'My personal website and blog developed with Gatsby.js 💬',
-        siteUrl: 'http://niiyeboah.com/'
+        description: 'A Blog written and developed by Nii Yeboah ▪◾ ◼  ⬛',
+        siteUrl: 'http://niiyeboah.com'
     },
     plugins: [
         {

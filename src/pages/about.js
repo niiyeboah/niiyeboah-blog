@@ -14,7 +14,7 @@ class About extends React.Component {
     render() {
         const siteTitle = get(this, 'props.data.site.siteMetadata.title');
         const siteUrl = get(this, 'props.data.site.siteMetadata.siteUrl');
-        const location = this.props.location.pathname.substring(1);
+        const location = this.props.location.pathname;
         return (
             <div style={this.props.transition && this.props.transition.style}>
                 <Helmet>

@@ -11,7 +11,7 @@ class BlogPostTemplate extends React.Component {
         this.props.setBanner(null);
     }
     render() {
-        const location = this.props.location.pathname.substring(1);
+        const location = this.props.location.pathname;
         const post = this.props.data.markdownRemark;
         const siteTitle = get(this.props, 'data.site.siteMetadata.title');
         const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
