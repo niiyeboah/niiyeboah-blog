@@ -26,11 +26,9 @@ class Bio extends React.Component {
                     }}
                 />
                 <p>
-                    Written by <strong>Nii Yeboah</strong> who currently lives
-                    in Accra working as a freelance web developer.{' '}
-                    <a href="mailto:contact@niiyeboah.com">
-                        contact@niiyeboah.com
-                    </a>
+                    Written by <strong>Nii Yeboah</strong> who currently lives in Accra working as a
+                    freelance web developer.{' '}
+                    <a href="mailto:contact@niiyeboah.com">contact@niiyeboah.com</a>
                 </p>
             </div>
         );

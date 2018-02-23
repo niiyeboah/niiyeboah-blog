@@ -3,7 +3,7 @@ import React from 'react';
 import { rhythm, scale } from '../utils/typography';
 
 class LazyLoadBanner extends React.Component {
-    constructor() {
+    constructor(props) {
         super(props);
         this.state = {};
     }
