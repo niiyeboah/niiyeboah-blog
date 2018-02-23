@@ -22,7 +22,10 @@ class NiiYeboahDotCom extends React.Component {
 }
 
 class Header extends React.Component {
-    state = {};
+    constructor() {
+        super(props);
+        this.state = {};
+    }
     render() {
         const { setHeaderHeight } = this.props;
         return (

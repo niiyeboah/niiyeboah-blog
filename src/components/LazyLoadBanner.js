@@ -3,7 +3,10 @@ import React from 'react';
 import { rhythm, scale } from '../utils/typography';
 
 class LazyLoadBanner extends React.Component {
-    state = {};
+    constructor() {
+        super(props);
+        this.state = {};
+    }
     componentDidMount() {
         this.state = { loaded: false, imageClass: 'loading' };
     }
@@ -31,7 +34,7 @@ class LazyLoadBanner extends React.Component {
     render() {
         const { imageClass, image } = this.state;
         const { data, height = 420 } = this.props;
-        let lazyLoadBanner = null;
+        let lazyLoadBanner = <section className="banner-container" style={{ height: 0 }} />;
         if (data && data.text) {
             lazyLoadBanner = (
                 <section
@@ -63,10 +66,7 @@ class LazyLoadBanner extends React.Component {
                         <blockquote className="quote" style={{ ...scale(0.3) }}>
                             {data.text}
                         </blockquote>
-                        <p
-                            className="quotee"
-                            style={{ marginRight: rhythm(1) }}
-                        >
+                        <p className="quotee" style={{ marginRight: rhythm(1) }}>
                             {`- ${data.quotee}`}
                         </p>
                     </div>

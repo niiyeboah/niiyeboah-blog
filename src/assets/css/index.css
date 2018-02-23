@@ -189,6 +189,7 @@ footer .copyright span {
 }
 .banner-container {
     position: relative;
+    transition: height 0.2s ease-in-out;
 }
 .banner {
     position: absolute;
@@ -256,7 +257,7 @@ footer .copyright span {
         border-left-color: #396;
     }
 }
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1200px) {
     .banner-image {
         background-size: auto 100%;
         background-position: center;

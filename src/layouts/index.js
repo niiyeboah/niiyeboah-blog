@@ -21,11 +21,11 @@ class Template extends React.Component {
         super(props);
         this.toggleMenu = this.toggleMenu.bind(this);
         this.setBanner = this.setBanner.bind(this);
+        this.state = {
+            menuVisible: null,
+            year: new Date().getFullYear()
+        };
     }
-    state = {
-        menuVisible: null,
-        year: new Date().getFullYear()
-    };
     toggleMenu() {
         const { menuVisible } = this.state;
         this.setState({

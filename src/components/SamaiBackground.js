@@ -2,7 +2,10 @@ import React from 'react';
 import Samai from 'samai';
 
 class SamaiBackground extends React.Component {
-    state = {};
+    constructor() {
+        super(props);
+        this.state = {};
+    }
     componentDidMount() {
         if (typeof document !== undefined) {
             const samai = new Samai({
