@@ -42,7 +42,7 @@ class Template extends React.Component {
         const { menuVisible } = this.state;
         const root = document.documentElement;
         if (menuVisible) root.style.overflowY = 'hidden';
-        else setTimeout(() => (root.style.overflowY = 'scroll'), 400);
+        else root.style.overflowY = 'scroll';
         Array.prototype.forEach.call(document.querySelectorAll('a > img'), el => {
             if (el.parentElement.className.indexOf('ink') < 0) {
                 el.parentElement.className += ' image-link';
@@ -63,9 +63,11 @@ class Template extends React.Component {
                     <title>{siteTitle}</title>
                     <link rel="canonical" href={siteUrl} />
                     <meta name="description" content={siteDescription} />
-                    <meta property="og:title" content={siteTitle} />
+                    <meta property="og:title" content={'💬'} />
                     <meta property="og:description" content={siteDescription} />
                     <meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
+                    <meta property="og:image:width" content="650" />
+                    <meta property="og:image:height" content="650" />
                     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

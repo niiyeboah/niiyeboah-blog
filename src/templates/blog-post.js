@@ -20,6 +20,11 @@ class BlogPostTemplate extends React.Component {
             <div style={this.props.transition && this.props.transition.style}>
                 <Helmet>
                     <title>{`${post.frontmatter.title} | ${siteTitle}`}</title>
+                    <meta
+                        property="og:title"
+                        content={`${post.frontmatter.title} | ${siteTitle}`}
+                    />
+                    <meta property="og:description" content={post.excerpt} />
                     <link rel="canonical" href={siteUrl + location} />
                 </Helmet>
                 <h1>{post.frontmatter.title}</h1>
@@ -84,6 +89,7 @@ export const pageQuery = graphql`
         markdownRemark(fields: { slug: { eq: $slug } }) {
             id
             html
+            excerpt
             frontmatter {
                 title
                 date(formatString: "MM-DD-YYYY")

@@ -4,7 +4,7 @@ module.exports = {
     siteMetadata: {
         title: 'niiyeboah.com',
         author: 'Nii Yeboah',
-        description: 'A Blog written and developed by Nii Yeboah ▪◾ ◼  ⬛',
+        description: 'A Blog written and developed by ＮＩＩ ＹＥＢＯＡＨ',
         siteUrl: 'http://niiyeboah.com'
     },
     plugins: [
