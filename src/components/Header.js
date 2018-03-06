@@ -1,25 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'gatsby-link';
-import { Icon } from 'semantic-ui-react';
-import 'semantic-ui-css/components/icon.min.css';
 import 'typeface-fira-sans';
 
 import { rhythm } from '../utils/typography';
-
-class NiiYeboahDotCom extends React.Component {
-    render() {
-        return (
-            <span className="header-title">
-                <span>{'<'}</span>
-                {'niiyeboah'}
-                <span>{'.'}</span>
-                {'com'}
-                <span>{'>'}</span>
-            </span>
-        );
-    }
-}
+import TitleLogo from '../assets/images/niiyeboah.svg';
 
 class Header extends React.Component {
     constructor(props) {
@@ -29,28 +14,20 @@ class Header extends React.Component {
     render() {
         const { setHeaderHeight } = this.props;
         return (
-            <section className="header-container">
-                <div
-                    className="header"
-                    style={{
-                        maxWidth: rhythm(24),
-                        padding: `${rhythm(0.5)} ${rhythm(3 / 4)}`
-                    }}
-                >
-                    <h3>
-                        <Link
-                            style={{
-                                boxShadow: 'none',
-                                textDecoration: 'none',
-                                color: 'inherit',
-                                backgroundImage: 'none',
-                                textShadow: 'none'
-                            }}
-                            to={'/'}
-                        >
-                            <NiiYeboahDotCom />
-                        </Link>
-                    </h3>
+            <header className="header-container">
+                <div className="header" style={{ maxWidth: rhythm(24) }}>
+                    <Link
+                        style={{
+                            boxShadow: 'none',
+                            textDecoration: 'none',
+                            color: 'inherit',
+                            backgroundImage: 'none',
+                            textShadow: 'none'
+                        }}
+                        to={'/'}
+                    >
+                        <img className="title-logo" src={TitleLogo} />
+                    </Link>
                 </div>
                 <div
                     id="logo"
@@ -58,7 +35,7 @@ class Header extends React.Component {
                         margin: `${rhythm(0.55)} ${rhythm(3 / 4)} 0 0`
                     }}
                 />
-            </section>
+            </header>
         );
     }
 }

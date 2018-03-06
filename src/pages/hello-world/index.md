@@ -15,7 +15,6 @@ Admittedly it has taken a bit too long to build this thing. After getting over w
 
 * [Gatsby.js](https://www.gatsbyjs.org/) | Static site generator
 * [React.js](https://reactjs.org/) | JavaScript front-end library
-* [Semantic UI React](https://react.semantic-ui.com/introduction) | CSS framework
 * [GitHub Pages](https://pages.github.com/) | Static site host
 
 [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat-square)](https://stackshare.io/niiyeboah/niiyeboah-com)

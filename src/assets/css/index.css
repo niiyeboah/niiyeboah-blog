@@ -1,4 +1,11 @@
 /* LAYOUT */
+html {
+    height: 100%;
+}
+body {
+    position: relative;
+    min-height: 100%;
+}
 .header-container {
     position: fixed;
     top: 0;
@@ -12,19 +19,14 @@
 .header {
     text-align: center;
     margin: 0 auto;
+    display: flex;
 }
-.header h3 {
+.header a {
+    margin: 7px auto 2px auto;
+}
+.header a img {
     margin: 0;
-    color: #fff;
-}
-.header-title {
-    font-family: fira-sans, monospace;
-}
-.header-title span {
-    color: #396;
-}
-.content-area {
-    position: relative;
+    height: 40px;
 }
 footer {
     position: absolute;
@@ -32,10 +34,12 @@ footer {
     left: 0;
     bottom: 0;
     font-weight: bold;
+    background: #f3f3f3;
+    border-bottom: 2px solid #396;
 }
 footer .copyright {
     float: right;
-    margin: 10px 20px;
+    margin: 5px 20px 3px 20px;
     position: relative;
 }
 footer .copyright i {
@@ -87,6 +91,7 @@ footer .copyright span {
 }
 .overlay nav {
     margin: auto;
+    min-width: 16rem;
 }
 .overlay img {
     z-index: 1;
@@ -116,6 +121,7 @@ footer .copyright span {
 .overlay ul li > span:first-child {
     margin: auto 10px;
     color: #396;
+    flex-basis: 10%;
 }
 .overlay ul li a {
     -webkit-transition: color 0.2s;
@@ -251,10 +257,25 @@ footer .copyright span {
     color: #396;
     font-weight: bold;
 }
+/* GENERAL */
+.cirle-image {
+    border-radius: 500rem;
+    display: block;
+}
+
 /* MEDIA QUERIES */
 @media only screen and (max-width: 480px) {
     blockquote {
         border-left-color: #396;
+    }
+    .header a {
+        margin: 6px auto 1px auto;
+    }
+    .header a img {
+        height: 35px;
+    }
+    .overlay nav {
+        min-width: auto;
     }
 }
 @media only screen and (max-width: 1200px) {

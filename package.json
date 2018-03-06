@@ -32,8 +32,6 @@
         "react-responsive-grid": "^0.3.4",
         "react-transition-group": "^2.2.1",
         "samai": "^0.3.3",
-        "semantic-ui-css": "^2.2.14",
-        "semantic-ui-react": "^0.78.2",
         "typeface-fira-sans": "0.0.54",
         "typography-theme-fairy-gates": "^0.15.11"
     },

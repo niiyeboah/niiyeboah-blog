@@ -1,8 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import get from 'lodash/get';
-import { Image } from 'semantic-ui-react';
-import 'semantic-ui-css/components/image.min.css';
 
 import { rhythm } from '../utils/typography';
 import Avatar from '../assets/images/rehab.square.jpg';
@@ -21,10 +19,9 @@ class About extends React.Component {
                     <title>{`About | ${siteTitle}`}</title>
                     <link rel="canonical" href={siteUrl + location} />
                 </Helmet>
-                <Image
+                <img
                     src={Avatar}
-                    size="small"
-                    circular
+                    className="cirle-image"
                     style={{
                         margin: `${rhythm(0.5)} auto ${rhythm(2)}`,
                         border: '2px solid #396',

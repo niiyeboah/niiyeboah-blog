@@ -1,6 +1,4 @@
 import React from 'react';
-import { Image } from 'semantic-ui-react';
-import 'semantic-ui-css/components/image.min.css';
 
 import { rhythm } from '../utils/typography';
 import Avatar from '../assets/images/bojo.square.jpg';
@@ -13,12 +11,11 @@ class Bio extends React.Component {
                     display: 'flex'
                 }}
             >
-                <Image
+                <img
                     src={Avatar}
-                    size="tiny"
-                    circular
+                    className="cirle-image"
                     style={{
-                        marginRight: rhythm(1 / 2),
+                        marginRight: rhythm(0.6),
                         marginBottom: 0,
                         width: rhythm(2),
                         height: rhythm(2),

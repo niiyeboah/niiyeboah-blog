@@ -1,8 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import get from 'lodash/get';
-import { Icon } from 'semantic-ui-react';
-import 'semantic-ui-css/components/icon.min.css';
 
 import { rhythm, scale } from '../utils/typography';
 import AnimatedLogo from '../utils/n-logo.js';
@@ -68,13 +66,14 @@ class Template extends React.Component {
                     <meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
                     <meta property="og:image:width" content="650" />
                     <meta property="og:image:height" content="650" />
+                    <meta name="msapplication-TileColor" content="#222222" />
+                    <meta name="theme-color" content="#222222" />
                     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                     <link rel="manifest" href="/site.webmanifest" />
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#222222" />
-                    <meta name="msapplication-TileColor" content="#222222" />
-                    <meta name="theme-color" content="#222222" />
+                    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" />
                 </Helmet>
                 <Header />
                 <div
@@ -94,7 +93,7 @@ class Template extends React.Component {
                             ...scale(0.5)
                         }}
                     >
-                        <Icon name="bars" />
+                        <i className="fas fa-bars" />
                     </div>
                     <SamaiBackground className={`overlay overlay-hugeinc ${menuVisible}`}>
                         <div
@@ -105,12 +104,11 @@ class Template extends React.Component {
                                 ...scale(0.5)
                             }}
                         >
-                            <Icon name="close" />
+                            <i className="fas fa-times" />
                         </div>
                         <nav
                             style={{
-                                maxWidth: rhythm(24),
-                                padding: `${contentPadding}px ${rhythm(3 / 4)}`
+                                maxWidth: rhythm(24)
                             }}
                         >
                             <OverlayMenu onClick={this.toggleMenu} />
@@ -137,12 +135,12 @@ class Template extends React.Component {
                             setBanner: this.setBanner
                         })}
                     </section>
-                    <footer>
-                        <div className="copyright">
-                            <span>{`${siteAuthor} © ${year}`}</span>
-                        </div>
-                    </footer>
                 </div>
+                <footer>
+                    <div className="copyright">
+                        <span>{`${siteAuthor} © ${year}`}</span>
+                    </div>
+                </footer>
             </main>
         );
     }
