@@ -61,7 +61,7 @@ class Template extends React.Component {
                     <title>{siteTitle}</title>
                     <link rel="canonical" href={siteUrl} />
                     <meta name="description" content={siteDescription} />
-                    <meta property="og:title" content={'💬'} />
+                    <meta property="og:title" content={'ｎｉｉｙｅｂｏａｈ．ｃｏｍ'} />
                     <meta property="og:description" content={siteDescription} />
                     <meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
                     <meta property="og:image:width" content="650" />
@@ -89,7 +89,7 @@ class Template extends React.Component {
                         onClick={this.toggleMenu}
                         className="bars-icon toggle-menu"
                         style={{
-                            padding: `${rhythm(0.25)}` + ' 25px 25px ' + `${rhythm(0.6)}`,
+                            padding: `${rhythm(0.3)}` + ' 25px 25px ' + `${rhythm(0.6)}`,
                             ...scale(0.5)
                         }}
                     >

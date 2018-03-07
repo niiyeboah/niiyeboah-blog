@@ -1,10 +1,10 @@
-const config = require('./data/config');
+const config = require('./private/config');
 
 module.exports = {
     siteMetadata: {
         title: 'niiyeboah.com',
         author: 'Nii Yeboah',
-        description: 'A Blog written and developed by ＮＩＩ ＹＥＢＯＡＨ',
+        description: 'A Blog written and developed by Nii Yeboah',
         siteUrl: 'http://niiyeboah.com'
     },
     plugins: [
