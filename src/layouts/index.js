@@ -37,13 +37,10 @@ class Template extends React.Component {
         new AnimatedLogo('logo', 20).animate();
     }
     componentDidUpdate() {
-        const { menuVisible } = this.state;
-        const root = document.documentElement;
-        if (menuVisible) root.style.overflowY = 'hidden';
-        else root.style.overflowY = 'scroll';
+        const className = 'image-link';
         Array.prototype.forEach.call(document.querySelectorAll('a > img'), el => {
-            if (el.parentElement.className.indexOf('ink') < 0) {
-                el.parentElement.className += ' image-link';
+            if (el.parentElement.className.indexOf(className) < 0) {
+                el.parentElement.className += ` ${className}`;
             }
         });
     }
@@ -138,7 +135,7 @@ class Template extends React.Component {
                 </div>
                 <footer>
                     <div className="copyright">
-                        <span>{`${siteAuthor} © ${year}`}</span>
+                        <span>{`© ${year} ${siteAuthor}`}</span>
                     </div>
                 </footer>
             </main>
