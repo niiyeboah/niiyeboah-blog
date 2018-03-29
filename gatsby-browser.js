@@ -8,7 +8,6 @@ import getTransitionStyle from './src/utils/getTransitionStyle';
 
 const timeout = 250;
 const historyExitingEventType = `history::exiting`;
-
 const getUserConfirmation = (pathname, callback) => {
     const event = new CustomEvent(historyExitingEventType, {
         detail: { pathname }
@@ -19,7 +18,7 @@ const getUserConfirmation = (pathname, callback) => {
     }, timeout);
 };
 const history = createHistory({ getUserConfirmation });
-// block must return a string to conform
+
 history.block((location, action) => location.pathname);
 exports.replaceHistory = () => history;
 
@@ -32,10 +31,9 @@ class ReplaceComponentRenderer extends React.Component {
 
     listenerHandler(event) {
         const nextPageResources =
-            this.props.loader.getResourcesForPathname(
-                event.detail.pathname,
-                nextPageResources => this.setState({ nextPageResources })
-            ) || {};
+            this.props.loader.getResourcesForPathname(event.detail.pathname, nextPageResources => {
+                this.setState({ nextPageResources });
+            }) || {};
         this.setState({ exiting: true, nextPageResources });
     }
 
@@ -44,10 +42,7 @@ class ReplaceComponentRenderer extends React.Component {
     }
 
     componentWillUnmount() {
-        window.removeEventListener(
-            historyExitingEventType,
-            this.listenerHandler
-        );
+        window.removeEventListener(historyExitingEventType, this.listenerHandler);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -85,7 +80,7 @@ class ReplaceComponentRenderer extends React.Component {
     }
 }
 
-// eslint-disable-next-line react/display-name
+/* eslint-disable-next-line react/display-name */
 exports.replaceComponentRenderer = ({ props, loader }) => {
     if (props.layout) {
         return undefined;

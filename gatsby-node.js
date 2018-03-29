@@ -31,7 +31,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     console.log(result.errors);
                     reject(result.errors);
                 }
-                // Create blog posts pages.
                 const posts = result.data.allMarkdownRemark.edges;
                 _.each(posts, (post, index) => {
                     const previous = index === posts.length - 1 ? false : posts[index + 1].node;
