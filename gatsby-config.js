@@ -1,59 +1,60 @@
-const config = require('./private/config');
+const { homepage, description } = require('./package.json');
+const gaID = process.env.GA || require('./private/config').googleAnalyticsID;
 
 module.exports = {
-    siteMetadata: {
-        title: 'niiyeboah.com',
-        author: 'Nii Yeboah',
-        description: 'A Blog written and developed by Nii Yeboah',
-        siteUrl: 'http://niiyeboah.com'
+  siteMetadata: {
+    title: 'niiyeboah.com',
+    author: 'Nii Yeboah',
+    siteUrl: homepage,
+    description
+  },
+  plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages'
+      }
     },
-    plugins: [
-        {
-            resolve: `gatsby-source-filesystem`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
             options: {
-                path: `${__dirname}/src/pages`,
-                name: 'pages'
+              maxWidth: 590
             }
-        },
-        {
-            resolve: `gatsby-transformer-remark`,
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
             options: {
-                plugins: [
-                    {
-                        resolve: `gatsby-remark-images`,
-                        options: {
-                            maxWidth: 590
-                        }
-                    },
-                    {
-                        resolve: `gatsby-remark-responsive-iframe`,
-                        options: {
-                            wrapperStyle: `margin-bottom: 1.0725rem`
-                        }
-                    },
-                    'gatsby-remark-prismjs',
-                    'gatsby-remark-copy-linked-files',
-                    'gatsby-remark-smartypants'
-                ]
+              wrapperStyle: `margin-bottom: 1.0725rem`
             }
-        },
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
-        {
-            resolve: `gatsby-plugin-google-analytics`,
-            options: {
-                trackingId: config.googleAnalyticsID
-            }
-        },
-        `gatsby-plugin-feed`,
-        `gatsby-plugin-offline`,
-        `gatsby-plugin-react-helmet`,
-        {
-            resolve: 'gatsby-plugin-typography',
-            options: {
-                pathToConfigModule: 'src/utils/typography'
-            }
-        },
-        `gatsby-plugin-sitemap`
-    ]
+          },
+          'gatsby-remark-prismjs',
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-smartypants'
+        ]
+      }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: gaID
+      }
+    },
+    `gatsby-plugin-feed`,
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'src/utils/typography'
+      }
+    },
+    `gatsby-plugin-sitemap`
+  ]
 };
