@@ -12,6 +12,7 @@ class BlogPostTemplate extends React.Component {
   componentDidMount() {
     this.props.setBanner(null);
   }
+
   render() {
     const location = this.props.location.pathname;
     const post = this.props.data.markdownRemark;
