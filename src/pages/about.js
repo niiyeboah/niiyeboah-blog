@@ -30,10 +30,11 @@ class About extends React.Component {
         />
         <h5>Hi, I'm Nii Yeboah.</h5>
         <p>
-          I'm a software developer and freelancer located in Accra, Ghana. I
-          mainly focus on front end development but I also have experience
-          working as a full stack engineer. If you would like to discuss a
-          project or job opening feel free to send me an email.<br />
+          I'm a Front-End Developer at <a href="https://vaadin.com">Vaadin</a>,
+          located in Turku, Finland. I also have previous experience working as
+          a full stack engineer. If you would like to discuss a project or job
+          opening feel free to send me an email:
+          <br />
         </p>
         <p>
           <a href="mailto:contact@niiyeboah.com">contact@niiyeboah.com</a>.
@@ -41,11 +42,9 @@ class About extends React.Component {
         <hr />
         <p>
           Besides programming and technology, my other interests are{' '}
-          <a href="https://goo.gl/2f5LE3">music production</a> and video games
-          (especially competitive gaming and eSports). I have a few other random
-          hobbies like recycling paper by using it for origami and practicing
-          dance moves when nobody is watching. One of my long term goals is to
-          own a self sustainable off-the-grid smart home.
+          <a href="https://goo.gl/2f5LE3">music production</a>, video games
+          (especially competitive gaming and eSports), and{' '}
+          <a href="https://goo.gl/WRr2bJ">generative art</a>.
         </p>
       </div>
     );

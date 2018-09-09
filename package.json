@@ -31,7 +31,12 @@
     "typography-theme-fairy-gates": "^0.15.11"
   },
   "homepage": "https://niiyeboah.com",
-  "keywords": ["gatsby", "blog", "static site", "personal website"],
+  "keywords": [
+    "gatsby",
+    "blog",
+    "static site",
+    "personal website"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -39,6 +44,7 @@
   },
   "scripts": {
     "dev": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "start": "npm run dev"
   }
 }

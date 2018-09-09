@@ -1,5 +1,5 @@
-![Logo](https://niiyeboah.com/logo.png 'Logo')
+[![Logo](https://niiyeboah.com/logo.png 'Logo')](https://niiyeboah.com/)
 
-# niiyeboah.com &middot; [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/niiyeboah/niiyeboah-blog/blob/master/LICENSE)
+# [niiyeboah.com](https://niiyeboah.com/) &middot; [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/niiyeboah/niiyeboah-blog/blob/master/LICENSE)
 
 My personal website and blog built with [Gatsby.js](https://www.gatsbyjs.org/).
