@@ -45,6 +45,10 @@
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "deploy": "gatsby build && gh-pages -d public"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
   }
 }
