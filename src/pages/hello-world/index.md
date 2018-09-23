@@ -1,6 +1,6 @@
 ---
 title: Hello World
-date: "2018-02-21"
+date: '2018-02-21'
 ---
 
 ![Hello World](./helloworld.gif 'Hello World')
@@ -13,10 +13,10 @@ The main subject I'll focus on is web development but I may also make posts on m
 
 Admittedly it has taken a bit too long to build this thing. After getting over whatever the programmers version of writers block is and also overcoming a severe case of [JavaScript framework fatigue](https://github.com/sorrycc/awesome-javascript/blob/master/README.md) I finally settled on the stack for this site:
 
-* [Gatsby.js](https://www.gatsbyjs.org/) | Static site generator
-* [React.js](https://reactjs.org/) | JavaScript front-end library
-* [GitHub Pages](https://pages.github.com/) | Static site host
-
 [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat-square)](https://stackshare.io/niiyeboah/niiyeboah-com)
+
+- [Gatsby.js](https://www.gatsbyjs.org/) | Static site generator
+- [React.js](https://reactjs.org/) | JavaScript front-end library
+- [GitHub Pages](https://pages.github.com/) | Static site host
 
 I am currently managing the posts with GitHub but I plan to use a headless CMS like [NetlifyCMS](https://www.netlifycms.org/) or [Contentful](https://www.contentful.com/) in the future. In my next post I will talk about why I chose to use Gatsby to build this site and mention my thoughts on some of the latest trends in the industry like the [JAMStack](https://jamstack.org/), [Headless CMSs](https://headlesscms.org/), [Serverless Architechtures](https://aws.amazon.com/serverless/) and [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/).

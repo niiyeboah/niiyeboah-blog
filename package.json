@@ -46,7 +46,7 @@
     "dev": "gatsby develop",
     "build": "gatsby build",
     "start": "npm run dev",
-    "deploy": "gatsby build && gh-pages -d public"
+    "deploy": "gatsby build && sudo gh-pages -d public"
   },
   "devDependencies": {
     "gh-pages": "^1.2.0"

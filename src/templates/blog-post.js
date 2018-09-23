@@ -20,7 +20,10 @@ class BlogPostTemplate extends React.Component {
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const { previous, next } = this.props.pathContext;
     return (
-      <div style={this.props.transition && this.props.transition.style}>
+      <div
+        id="blog-post-container"
+        style={this.props.transition && this.props.transition.style}
+      >
         <Helmet>
           <title>{`${post.frontmatter.title} | ${siteTitle}`}</title>
           <meta

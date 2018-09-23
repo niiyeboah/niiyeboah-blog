@@ -34,7 +34,12 @@ class Template extends React.Component {
     this.setState({ banner: data });
   }
   componentDidMount() {
-    new AnimatedLogo('logo', 20).animate();
+    new AnimatedLogo('logo', 20).animate(() => {
+      const container = document.querySelector('#blog-post-container');
+      if (container.style.opacity === '0') {
+        container.style.opacity = '1';
+      }
+    });
   }
   componentDidUpdate() {
     const className = 'image-link';
