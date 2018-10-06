@@ -32,8 +32,8 @@ class About extends React.Component {
         <p>
           I'm a Front-End Developer at <a href="https://vaadin.com">Vaadin</a>,
           located in Turku, Finland. I also have previous experience working as
-          a full stack engineer. If you would like to discuss a project or job
-          opening feel free to send me an email:
+          a full stack engineer. If you would like to discuss a project 
+          feel free to send me an email:
           <br />
         </p>
         <p>
